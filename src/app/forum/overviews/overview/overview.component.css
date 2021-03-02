@@ -1,0 +1,30 @@
+.overview-title-div{
+  padding-right: 20px;
+}
+
+.overview-description-p{
+  font-size: 14px;
+  color: rgb(73,80,87);
+}
+
+.overview-creator-p{
+  font-size: 14px;
+  text-align: right;
+  color: rgb(48, 48, 48);
+}
+
+h3{
+  color: rgb(48, 48, 48);
+  margin: 0px
+}
+
+p{
+  color: rgb(31,31,30);
+  margin-top: 5px;
+  /* font-size: 13px; */
+}
+
+a{
+  text-decoration: none;
+}
+
