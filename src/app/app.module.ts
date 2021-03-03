@@ -25,6 +25,8 @@ import {PiTagPanelComponent} from './shared/components/pi-tag-panel/pi-tag-panel
 import {TabViewModule} from 'primeng/tabview';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {ButtonModule} from 'primeng/button';
+import {SearchBarComponent} from './forum/search-bar/search-bar.component';
+import { SearchFilterComponent } from './forum/search-filter/search-filter.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import {ButtonModule} from 'primeng/button';
     PiChipComponent,
     OverviewComponent,
     SearchOptionComponent,
-    PiTagPanelComponent
+    PiTagPanelComponent,
+    SearchBarComponent,
+    SearchFilterComponent
   ],
   imports: [
     BrowserModule,

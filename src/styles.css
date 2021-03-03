@@ -2,7 +2,4 @@
 @import "primeng/resources/primeng.min.css";
 @import "primeng/resources/themes/bootstrap4-light-blue/theme.css";
 
-body{
-  margin: 0px;
-  background-color: #3D0F3D;
-}
+body{ margin: 0px; background-color: #e4e0e0; }

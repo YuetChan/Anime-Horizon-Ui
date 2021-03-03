@@ -2,18 +2,28 @@ ul { padding: 0; margin: 5px; }
 
 li {
     list-style: none;
-    padding: 0 20px;
     display: inline-block;
-    border-left: 2px solid rgb(107, 107, 107, 0.4);
+
+    padding: 0 20px;
     margin: 10px 0;
 }
 
 a{ text-decoration: none; }
 
 i{
-  background: -webkit-linear-gradient(326deg,#ff4800 0%, #a4508b 74%);
+  background: -webkit-linear-gradient(326deg,#ff4800 0%, #f7892f 74%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-img{ height: 60px; width: 80px; margin-left: 2px; }
+.options-li{
+  border-left: 2px solid rgb(107, 107, 107, 0.4);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.filter-by-li{
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+
+  min-width: 100px;
+  margin-bottom: 10px;
+}

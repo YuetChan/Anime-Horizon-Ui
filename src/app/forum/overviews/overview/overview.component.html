@@ -1,11 +1,10 @@
 <div fxLayout="column" fxLayoutGap="5px">
   <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
-    <a href="#"><h3>{{overview.title}}</h3></a>
+    <a href="#" class=""><h3>{{overview.title}}</h3></a>
   </div>
   <p class="overview-description-p">{{overview.description | randomTextTruncate : 150 : 50}}</p>
-  <a href="#">
-    <p class="overview-creator-p">
-      <b>{{overview.creator}}</b>
-    </p>
-  </a>
+
+  <p class="overview-creator-p">
+    <a href="#" class="overview-creator-a"><b>{{overview.creator}}</b></a>
+  </p>
 </div>

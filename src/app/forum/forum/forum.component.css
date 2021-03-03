@@ -1,19 +1,29 @@
 .main-panel{
   margin-left: 25px;
   margin-right: 25px;
-  background-color: #3D0F3D;
+  background-color: #e4e0e0;
+  overflow-y: hidden;
 }
 
 .left-panel{
+  padding-top: 58px;
   max-width: 600px;
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-variant: normal;
-  background-color: #3D0F3D;
+  background-color: #ffffff;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 .post-paginator{
   width: 300px;
+}
+
+.search-bar-app{
+  position: fixed;
+  top: 0;
+  width: 100%
 }
 
 .search-option-div{
@@ -23,9 +33,6 @@
   padding-bottom: 5px;
   margin-bottom: 15px;
   margin-top: 0px;
-
-  border-bottom: 1px solid #C4C4C4;
-
 }
 
 .overviews-div{

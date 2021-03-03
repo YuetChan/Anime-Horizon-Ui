@@ -4,6 +4,7 @@ import {SelectItem} from 'primeng/api';
 import {MetaApiService} from '../../shared/services/meta-api.service';
 import {CachedCreatorsAndTags} from '../model/overview';
 import {AutoComplete} from 'primeng/autocomplete';
+import {SearchFilterComponent} from '../search-filter/search-filter.component';
 
 @Component({
   selector: 'app-search-option',
@@ -11,6 +12,8 @@ import {AutoComplete} from 'primeng/autocomplete';
   styleUrls: ['./search-option.component.css']
 })
 export class SearchOptionComponent implements OnInit {
+
+  @ViewChild('search_filter', {static : true}) searchFilterRef : SearchFilterComponent;
 
   orderByDate: SelectItem;
   orderByDateOptions = [
@@ -70,5 +73,7 @@ export class SearchOptionComponent implements OnInit {
   }
 
   getCachedCreatorsAndTags(){ return { cachedCreators : this.cachedCreators } }
+
+  handleFilterByClick(event){ this.searchFilterRef.showFilterPanel(event); }
 
 }

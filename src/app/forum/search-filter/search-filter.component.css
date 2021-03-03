@@ -1,0 +1,17 @@
+ul { padding: 0; margin: 5px; }
+
+li {
+  list-style: none;
+
+  padding: 0 20px;
+  margin: 10px 0;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.search-filter-app ::ng-deep .p-overlaypanel .p-overlaypanel-content {
+  padding: 4px;
+}

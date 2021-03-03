@@ -1,22 +1,11 @@
 <div class="search-option-div">
-
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
-    <img class="logo-img" src="https://i.ibb.co/L6njyFQ/New-Project-6.png" alt="Boar Investor Logo">
-    <p-autoComplete
-        #autoCompleteSeries
-        [dropdown]="true"
-        [placeholder]="'Find by series...'"
-        [inputStyle]="{'height': '36px'}">
-    </p-autoComplete>
-  </div>
-
-  <div fxLayout="row" fxLayoutAlign="space-between center" >
+  <div fxLayout="row" fxLayoutAlign="space-between end">
     <ul>
-      <a href="#" style="color: #6B6B6B"><li><i class="pi pi-video"></i>&nbsp;Read Through</li></a>
-      <a href="#" style="color: #6B6B6B"><li><i class="pi pi-th-large"></i>&nbsp;Review/Analysis</li></a>
+      <a href="#" style="color: #6B6B6B"><li class="options-li"><i class="pi pi-cloud"></i>&nbsp;&nbsp;<b>Novel /Audible</b></li></a>
+      <a href="#" style="color: #6B6B6B"><li class="options-li"><i class="pi pi-comments"></i>&nbsp;&nbsp;<b>Review/Analysis</b></li></a>
     </ul>
-    <a href="#" style="color: #6B6B6B"><i class="pi pi-sliders-h"></i>&nbsp;Filter By&nbsp;&nbsp;</a>
+    <app-search-filter #search_filter></app-search-filter>
+    <a href="#" style="color: #6B6B6B" class="filter-by-li" (click)="handleFilterByClick($event)"><i class="pi pi-sliders-h"></i>&nbsp;&nbsp;Sort by&nbsp;&nbsp;</a>
   </div>
-
 </div>
 

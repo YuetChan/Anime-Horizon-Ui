@@ -7,10 +7,13 @@
   color: rgb(73,80,87);
 }
 
-.overview-creator-p{
-  font-size: 14px;
-  text-align: right;
+.overview-creator-a{
   color: rgb(48, 48, 48);
+  font-size: 14px;
+}
+
+.overview-creator-p{
+  text-align: right;
 }
 
 h3{
