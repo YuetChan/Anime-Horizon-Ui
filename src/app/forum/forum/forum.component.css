@@ -23,7 +23,8 @@
 .search-bar-app{
   position: fixed;
   top: 0;
-  width: 100%
+  width: 100%;
+  z-index: 999;
 }
 
 .search-option-div{

@@ -86,12 +86,9 @@ export class ForumComponent implements OnInit {
     this.refreshOverviews();
   }
 
-  refreshOverviews() {
-
-  }
+  refreshOverviews() { }
 
   getDefaultPageable(){ return  {pageNum : this.pageNum, pageSize : this.pageSize}; }
-
 
 }
 

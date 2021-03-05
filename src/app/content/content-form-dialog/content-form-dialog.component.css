@@ -1,0 +1,40 @@
+ul {
+  padding: 0;
+  margin: 5px;
+
+  width: 100%;
+}
+
+li {
+  list-style: none;
+  /* display: inline-block; */
+  width: 150px;
+
+  padding: 0 0px;
+  margin: 5px 0;
+}
+
+td{
+  padding-bottom: 10px;
+}
+
+.content-meta-dropdown-label-td{
+  width: 100px;
+}
+
+.content-meta-dropdown-div{
+  padding-left: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  li{
+    display: block;
+  }
+
+  ul{
+    max-height: 100px;
+    overflow-y: scroll;
+  }
+
+}

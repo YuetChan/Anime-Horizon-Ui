@@ -26,7 +26,12 @@ import {TabViewModule} from 'primeng/tabview';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {ButtonModule} from 'primeng/button';
 import {SearchBarComponent} from './forum/search-bar/search-bar.component';
-import { SearchFilterComponent } from './forum/search-filter/search-filter.component';
+import {SearchFilterComponent} from './forum/search-filter/search-filter.component';
+import {ContentCreateFormComponent} from './content/content-create-form/content-create-form.component';
+import {ContentBrowseComponent} from './content/content-browse/content-browse.component';
+import {QuillModule} from 'ngx-quill';
+import {ContentFormDialogComponent} from './content/content-form-dialog/content-form-dialog.component'
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,10 @@ import { SearchFilterComponent } from './forum/search-filter/search-filter.compo
     SearchOptionComponent,
     PiTagPanelComponent,
     SearchBarComponent,
-    SearchFilterComponent
+    SearchFilterComponent,
+    ContentCreateFormComponent,
+    ContentBrowseComponent,
+    ContentFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,10 @@ import { SearchFilterComponent } from './forum/search-filter/search-filter.compo
     HttpClientModule,
     TabViewModule,
     OverlayPanelModule,
-    ButtonModule
+    ButtonModule,
+    QuillModule.forRoot(),
+    DialogModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

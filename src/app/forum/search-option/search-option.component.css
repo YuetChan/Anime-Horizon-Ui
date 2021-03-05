@@ -8,7 +8,10 @@ li {
     margin: 10px 0;
 }
 
-a{ text-decoration: none; }
+a{
+  text-decoration: none;
+  color: #6B6B6B;
+}
 
 i{
   background: -webkit-linear-gradient(326deg,#ff4800 0%, #f7892f 74%);

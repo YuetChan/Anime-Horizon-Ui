@@ -1,0 +1,62 @@
+<p-dialog
+    [header]="label"
+    [(visible)]="displayModal"
+    [modal]="true" [style]="{width: '80vw'}"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="content-meta-dropdown-div">
+      <table>
+
+        <tr>
+          <td class="content-meta-dropdown-label-td">
+            Series:
+          </td>
+          <td>
+            <p-autoComplete
+                #autoCompleteSeries
+                [dropdown]="true"
+                [placeholder]="'Enter a series...'"
+                >
+            </p-autoComplete>
+            <span><br><small>&nbsp;&nbsp;&nbsp;Since series is not in the record, it would be created</small></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="content-meta-dropdown-label-td">
+            Type:
+          </td>
+          <td>
+            <p-dropdown
+                [style]="{'width': '180px'}"
+                [options]="types"
+                [(ngModel)]="selectedType"
+                placeholder="Select a type..."
+                optionLabel="name">
+            </p-dropdown>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-meta-dropdown-label-td">
+            Genres:
+          </td>
+          <td>
+            <ul fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px" >
+              <li *ngFor="let genre of genres">
+                <p-checkbox [value]="genre.code" [label]="genre.name" [(ngModel)]="selectedGenres"></p-checkbox>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+
+
+    </div>
+
+
+    <app-content-create-form></app-content-create-form>
+        <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+</p-dialog>
