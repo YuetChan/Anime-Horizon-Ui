@@ -7,30 +7,33 @@ ul {
 
 li {
   list-style: none;
-  /* display: inline-block; */
   width: 150px;
 
   padding: 0 0px;
   margin: 5px 0;
 }
 
-td{
-  padding-bottom: 10px;
+
+table { padding-left: 6px; }
+
+td{ padding-bottom: 10px; }
+
+.content-editor-app{ font-family: Arial, Helvetica, sans-serif; }
+
+.content-meta-dropdown-label-td{ width: 100px; }
+.content-meta-dropdown-div{ padding-left: 10px; }
+
+
+.series-warning-small{ padding-left: 10px; }
+.series-warning-small p{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
-.content-meta-dropdown-label-td{
-  width: 100px;
-}
-
-.content-meta-dropdown-div{
-  padding-left: 10px;
-}
 
 @media only screen and (max-width: 600px) {
 
-  li{
-    display: block;
-  }
+  li{ display: block; }
 
   ul{
     max-height: 100px;

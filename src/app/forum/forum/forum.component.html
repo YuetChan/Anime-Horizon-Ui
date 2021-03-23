@@ -1,27 +1,30 @@
 <div class="main-panel">
-  <app-search-bar class="search-bar-app"></app-search-bar>
-  <div class="left-panel">
+  <app-nav-banner class="nav-banner-app"></app-nav-banner>
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <div class="left-panel">
+      <div class="search-option-div">
+        <app-search-option></app-search-option>
+      </div>
 
-    <app-content-form-dialog></app-content-form-dialog>
-    <div class="search-option-div">
-      <app-search-option></app-search-option>
+      <div class="overviews-div">
+        <app-overviews [overviews]="overviews"></app-overviews>
+        <br>
+        <p-paginator
+            #post_paginator
+            class="post-paginator"
+            [rows]="pageSize"
+            [totalRecords]="totalCount"
+            (onPageChange)="changePage($event)"
+            [showJumpToPageDropdown]="true"
+            [showPageLinks]="false"
+            [style]="{'padding-bottom': '5px', 'padding-top' : '5px'}">
+        </p-paginator>
+      </div>
+    </div>
+    <div class="right-panel">
+      <app-content-browse></app-content-browse>
     </div>
 
-    <div class="overviews-div">
-      <app-overviews [overviews]="overviews"></app-overviews>
-      <p-paginator
-          #post_paginator
-          class="post-paginator"
-          [rows]="pageSize"
-          [totalRecords]="totalCount"
-          (onPageChange)="changePage($event)"
-          [showJumpToPageDropdown]="true"
-          [showPageLinks]="false">
-      </p-paginator>
-    </div>
-  </div>
-
-  <div class="right-panel">
   </div>
 
 </div>

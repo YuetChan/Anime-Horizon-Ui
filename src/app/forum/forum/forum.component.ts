@@ -21,7 +21,7 @@ export class ForumComponent implements OnInit {
 
   overviews : Overview[] = [
     {
-      title :"[Read Through] Re:ZERO - vol. 1 LN",
+      title :"Re:ZERO - vol. 1 LN",
       description : "Re:ZERO -Starting Life in Another World-, Vol. 1 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
       updatedAt: "",
       updatedBy: "",
@@ -30,7 +30,7 @@ export class ForumComponent implements OnInit {
       creator: "Audio Novel"
     },
     {
-      title :"[Read Through] Re:ZERO - vol. 2 LN",
+      title :"Re:ZERO - vol. 2 LN",
       description : "Re:ZERO -Starting Life in Another World-, Vol. 2 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
       updatedAt: "",
       updatedBy: "",
@@ -39,7 +39,7 @@ export class ForumComponent implements OnInit {
       creator: "Audio Novel"
     },
     {
-      title :"[Read Through] Re:ZERO - vol. 3 LN",
+      title :"Re:ZERO - vol. 3 LN",
       description : "Re:ZERO -Starting Life in Another World-, Vol. 3 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
       updatedAt: "",
       updatedBy: "",
@@ -48,7 +48,7 @@ export class ForumComponent implements OnInit {
       creator: "Audio Novel"
     },
     {
-      title :"[Read Through] Re:ZERO - vol. 3 LN",
+      title :"Re:ZERO - vol. 3 LN",
       description : "Re:ZERO -Starting Life in Another World-, Vol. 3 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
       updatedAt: "",
       updatedBy: "",
@@ -57,7 +57,7 @@ export class ForumComponent implements OnInit {
       creator: "Audio Novel"
     },
     {
-      title :"[Read Through] Re:ZERO - vol. 3 LN",
+      title :"Re:ZERO - vol. 3 LN",
       description : "Re:ZERO -Starting Life in Another World-, Vol. 3 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
       updatedAt: "",
       updatedBy: "",
@@ -66,7 +66,7 @@ export class ForumComponent implements OnInit {
       creator: "Audio Novel"
     },
     {
-      title :"[Read Through] Re:ZERO - vol. 3 LN",
+      title :"Re:ZERO - vol. 3 LN",
       description : "Re:ZERO -Starting Life in Another World-, Vol. 3 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
       updatedAt: "",
       updatedBy: "",

@@ -1,8 +1,40 @@
-<p-overlayPanel class="search-filter-app" #overlay_panel>
-  <ng-template pTemplate>
-      <ul>
-        <a href="#"><li>Latest</li></a>
-        <a href="#"><li>Oldest</li></a>
+<div>
+  <ul>
+    <li>
+      <b>Genres:</b>
+    </li>
+    <li>
+      <ul class="genres-ui" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px" >
+        <li *ngFor="let genre of genres">
+          <p-checkbox [value]="genre.code" [label]="genre.name" [(ngModel)]="selectedGenres"></p-checkbox>
+        </li>
       </ul>
-  </ng-template>
-</p-overlayPanel>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <b>Sort by:</b>
+    </li>
+    <li>
+      <div class="p-field-radiobutton">
+        <p-radioButton name="sortBy" value="latest" [(ngModel)]="selectedSortBy" inputId="latest"></p-radioButton>
+        <label for="latest">&nbsp;&nbsp;Latest</label>
+      </div>
+    </li>
+    <li>
+      <div class="p-field-radiobutton">
+        <p-radioButton name="sortBy" value="popular" [(ngModel)]="selectedSortBy" inputId="popular"></p-radioButton>
+        <label for="oldest">&nbsp;&nbsp;Popular</label>
+      </div>
+    </li>
+    <!-- <li>
+      <div class="p-field-radiobutton">
+        <p-radioButton name="sortBy" value="year" [(ngModel)]="selectedSortBy" inputId="year"></p-radioButton>
+        <label for="oldest">&nbsp;&nbsp;Year</label>
+      </div>
+    </li> -->
+  </ul>
+</div>
+
+

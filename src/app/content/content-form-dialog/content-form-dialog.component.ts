@@ -49,8 +49,8 @@ export class ContentFormDialogComponent implements OnInit {
       code : 'romance',
       inactive : false
     },{
-      name : 'Non-Human ',
-      code : 'non-human',
+      name : 'Non Human ',
+      code : 'non_human',
       inactive : false
     },{
       name : 'Isekai',
@@ -62,7 +62,16 @@ export class ContentFormDialogComponent implements OnInit {
       inactive : false
     },{
       name : 'School Life',
-      code : 'school life',
+      code : 'school_life',
+      inactive : false
+    }
+  ]
+
+  permissions = [
+    {
+      name : 'Allow Audible',
+      code : 'allow_audible',
+      tip : 'Allow any user to audible the material',
       inactive : false
     }
   ]
@@ -70,7 +79,9 @@ export class ContentFormDialogComponent implements OnInit {
   selectedType = '';
   selectedGenres = [];
 
+  doesSeriesExisted = null;
 
+  warningMsgForNonExistiedSeries = 'Since series does not exist in the record, it would be registered';
 
   constructor() { }
   ngOnInit(): void { }

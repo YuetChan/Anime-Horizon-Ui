@@ -1,10 +1,8 @@
-.overview-title-div{
-  padding-right: 20px;
-}
+.overview-title-div{ padding-right: 20px; }
 
 .overview-description-p{
+  margin: 0px;
   font-size: 14px;
-  color: rgb(73,80,87);
 }
 
 .overview-creator-a{
@@ -12,9 +10,18 @@
   font-size: 14px;
 }
 
+.overview-series-a{
+  color: rgb(48, 48, 48);
+  font-size: 14px;
+}
+
 .overview-creator-p{
   text-align: right;
+  margin-top: 0px;
+  margin-bottom: 8px;
 }
+
+.update-time-ago-span{ font-size: 12px; }
 
 h3{
   color: rgb(48, 48, 48);
@@ -24,10 +31,7 @@ h3{
 p{
   color: rgb(31,31,30);
   margin-top: 5px;
-  /* font-size: 13px; */
 }
 
-a{
-  text-decoration: none;
-}
+a{ text-decoration: none; }
 

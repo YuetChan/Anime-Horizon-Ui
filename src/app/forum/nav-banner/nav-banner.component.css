@@ -1,0 +1,10 @@
+img{
+  height: 55px; width: 80px;
+  margin-left: 15px;
+  background-color: #f7892f;
+}
+
+.nav-banner-div{
+  background-color: #f7892f;
+  /* border-bottom: 1px solid rgba(196, 196, 196, 0.7); */
+}

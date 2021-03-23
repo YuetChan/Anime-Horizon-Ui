@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContentCreateFormComponent } from './content-create-form.component';
+import { NavBannerComponent } from './nav-banner.component';
 
-describe('ContentCreateFormComponent', () => {
-  let component: ContentCreateFormComponent;
-  let fixture: ComponentFixture<ContentCreateFormComponent>;
+describe('NavBannerComponent', () => {
+  let component: NavBannerComponent;
+  let fixture: ComponentFixture<NavBannerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContentCreateFormComponent ]
+      declarations: [ NavBannerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContentCreateFormComponent);
+    fixture = TestBed.createComponent(NavBannerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

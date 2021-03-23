@@ -1,62 +1,88 @@
 <p-dialog
+    class="content-editor-app"
     [header]="label"
     [(visible)]="displayModal"
-    [modal]="true" [style]="{width: '80vw'}"
+    [modal]="true"
+    [style]="{
+      'width': '80vw',
+      'font-family': ' Arial, Helvetica, sans-serif'
+    }"
     [baseZIndex]="10000"
     [draggable]="false"
     [resizable]="false">
-    <div class="content-meta-dropdown-div">
-      <table>
 
-        <tr>
-          <td class="content-meta-dropdown-label-td">
-            Series:
-          </td>
-          <td>
-            <p-autoComplete
-                #autoCompleteSeries
-                [dropdown]="true"
-                [placeholder]="'Enter a series...'"
-                >
-            </p-autoComplete>
-            <span><br><small>&nbsp;&nbsp;&nbsp;Since series is not in the record, it would be created</small></span>
-          </td>
-        </tr>
+  <table>
 
-        <tr>
-          <td class="content-meta-dropdown-label-td">
-            Type:
-          </td>
-          <td>
-            <p-dropdown
-                [style]="{'width': '180px'}"
-                [options]="types"
-                [(ngModel)]="selectedType"
-                placeholder="Select a type..."
-                optionLabel="name">
-            </p-dropdown>
-          </td>
-        </tr>
-        <tr>
-          <td class="content-meta-dropdown-label-td">
-            Genres:
-          </td>
-          <td>
-            <ul fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px" >
-              <li *ngFor="let genre of genres">
-                <p-checkbox [value]="genre.code" [label]="genre.name" [(ngModel)]="selectedGenres"></p-checkbox>
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </table>
+    <tr>
+      <td class="content-meta-dropdown-label-td">
+        <b>Series:</b>
+      </td>
+      <td>
+        <p-autoComplete
+            #autoCompleteSeries
+            [dropdown]="true"
+            [placeholder]="'Enter a series...'">
+        </p-autoComplete>
+      </td>
+    </tr>
 
+    <tr>
+      <td></td>
+      <td>
+        <small *ngIf="doesSeriesExisted && doesSeriesExisted == true" class="series-warning-small" fxLayout="row" fxLayoutAlign="start start">
+          <i class="pi pi-exclamation-triangle"></i>
+          <p>&nbsp;{{warningMsgForNonExistiedSeries}}</p>
+        </small>
+      </td>
+    </tr>
 
-    </div>
+    <tr>
+      <td class="content-meta-dropdown-label-td">
+        <b>Type:</b>
+      </td>
+      <td>
+        <p-dropdown
+            [style]="{'width': '180px'}"
+            [options]="types"
+            [(ngModel)]="selectedType"
+            placeholder="Select a type..."
+            optionLabel="name">
+        </p-dropdown>
+      </td>
+    </tr>
+    <tr>
+      <td class="content-meta-dropdown-label-td">
+        <b>Genres:</b>
+      </td>
+      <td>
+        <ul fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px" >
+          <li *ngFor="let genre of genres">
+            <p-checkbox [value]="genre.code" [label]="genre.name" [(ngModel)]="selectedGenres"></p-checkbox>
+          </li>
+        </ul>
+      </td>
+      </tr>
 
+      <tr>
+        <td class="content-meta-dropdown-label-td">
+          <b>Permissions:</b>
+        </td>
+        <td>
+          <ul fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px" >
+            <li *ngFor="let permission of permissions">
+              <p-checkbox [value]="permission.code" [label]="permission.name" [(ngModel)]="selectedGenres"></p-checkbox>
+            </li>
+          </ul>
+        </td>
+      </tr>
 
-    <app-content-create-form></app-content-create-form>
-        <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
-        </ng-template>
+    </table>
+
+    <br>
+
+    <app-content-editor class="wrapper"></app-content-editor>
+    <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+
 </p-dialog>

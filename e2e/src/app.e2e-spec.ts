@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Anime-Horizon-Ui app is running!');
+    expect(page.getTitleText()).toEqual('Light-Novel-Horizon-Ui app is running!');
   });
 
   afterEach(async () => {

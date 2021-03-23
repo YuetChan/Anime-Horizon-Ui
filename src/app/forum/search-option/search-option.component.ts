@@ -15,6 +15,8 @@ export class SearchOptionComponent implements OnInit {
 
   @ViewChild('search_filter', {static : true}) searchFilterRef : SearchFilterComponent;
 
+  showSearchFilter = false;
+
   orderByDate: SelectItem;
   orderByDateOptions = [
     {label: 'Latest', value: 'latest'},
@@ -74,6 +76,6 @@ export class SearchOptionComponent implements OnInit {
 
   getCachedCreatorsAndTags(){ return { cachedCreators : this.cachedCreators } }
 
-  handleFilterByClick(event){ this.searchFilterRef.showFilterPanel(event); }
+  handleFilterByClicked(event){ this.showSearchFilter = !this.showSearchFilter; }
 
 }

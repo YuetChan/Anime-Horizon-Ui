@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-content-create-form',
-  templateUrl: './content-create-form.component.html',
-  styleUrls: ['./content-create-form.component.css']
+  selector: 'app-content-editor',
+  templateUrl: './content-editor.component.html',
+  styleUrls: ['./content-editor.component.css']
 })
-export class ContentCreateFormComponent implements OnInit {
+export class ContentEditorComponent implements OnInit {
+
+  // index = 0;
+  // contents = [];
+
+  content = '';
 
   toolBarConfig = {
     'toolbar': [
@@ -23,7 +28,7 @@ export class ContentCreateFormComponent implements OnInit {
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
       [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-      [{ 'font': [] }],
+      [{ 'font': ['sans-serif'] }],
       [{ 'align': [] }],
 
       ['clean'],                                         // remove formatting button
@@ -32,9 +37,9 @@ export class ContentCreateFormComponent implements OnInit {
     ]
   }
 
-  content : string = '';
-
   constructor() { }
   ngOnInit(): void { }
+
+  // handlePageChange(event) { this.index = event.page; }
 
 }
