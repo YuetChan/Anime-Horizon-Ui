@@ -1,0 +1,17 @@
+<div class="search-div">
+  <div fxLayout="row" fxLayoutAlign="space-between end">
+    <ul>
+      <a href="#"><li class="options-li"><i class="pi pi-cloud"></i>&nbsp;&nbsp;<b>Novel</b></li></a>
+      <a href="#"><li class="options-li"><i class="pi pi-volume-up"></i>&nbsp;&nbsp;<b>Audible</b></li></a>
+      <!-- <a href="#"><li class="options-li"><i class="pi pi-comments"></i>&nbsp;&nbsp;<b>Discussion</b></li></a> -->
+    </ul>
+    <a href="#" class="filter-by-li" (click)="handleFilterByClick($event)">
+      <i class="pi pi-sliders-h"></i>&nbsp;&nbsp;Filter by&nbsp;&nbsp;
+    </a>
+  </div>
+  <div class="search-filter-div"  *ngIf="showSearchFilter">
+    <app-search-filter (searchFilterResultChanged)="handleSearchFilterChange($event)"></app-search-filter>
+  </div>
+
+</div>
+

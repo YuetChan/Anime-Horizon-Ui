@@ -1,0 +1,30 @@
+<div class="main-panel">
+  <app-banner class="banner-app"></app-banner>
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <div class="left-panel">
+      <div class="search-div">
+        <app-search></app-search>
+      </div>
+      <div class="threads-div">
+        <div class="thread-div" *ngFor="let threadConfig of threadConfigs">
+          <app-thread [threadConfig]="threadConfig"></app-thread>
+        </div>
+        <br>
+        <p-paginator
+            #post_paginator
+            class="post-paginator"
+            [rows]="pageSize"
+            [totalRecords]="totalCount"
+            (onPageChange)="changePage($event)"
+            [showJumpToPageDropdown]="true"
+            [showPageLinks]="false"
+            [style]="{'padding-bottom': '5px', 'padding-top' : '5px'}">
+        </p-paginator>
+      </div>
+    </div>
+    <div class="right-panel">
+      <app-content></app-content>
+    </div>
+  </div>
+</div>
+

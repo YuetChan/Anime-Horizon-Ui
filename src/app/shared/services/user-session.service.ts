@@ -6,11 +6,15 @@ import { Injectable } from '@angular/core';
 export class UserSessionService {
 
   JWT = 'jwt';
+  defaultUserSession = "";
 
   constructor() { }
 
-  getUserSession() { return localStorage.getItem(this.JWT); }
-  setUserSession(jwt : string) { localStorage.setItem(this.JWT, jwt); }
+  getUserSession() {
+    const userSession = localStorage.getItem(this.JWT);
+    return userSession ?  userSession : this.defaultUserSession;
+  }
+  setUserSession(jwt: string) { localStorage.setItem(this.JWT, jwt); }
 
   clearUserSession() { localStorage.removeItem(this.JWT); }
 

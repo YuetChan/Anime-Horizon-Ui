@@ -1,0 +1,57 @@
+<div>
+
+  <ul>
+    <li>
+      <b>Genres:</b>
+    </li>
+    <li>
+      <ul
+          class="genres-ul"
+          fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
+        <li *ngFor="let genre of genres">
+          <p-checkbox
+              [value]="genre.code"
+              [label]="genre.name"
+              [(ngModel)]="searchFilterResult.genres"
+              (onChange)="handleCheckboxCheck()">
+          </p-checkbox>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <b>Sort by:</b>
+    </li>
+    <li>
+      <div class="p-field-radiobutton">
+        <p-radioButton
+            name="sortBy" value="latest" inputId="latest"
+            [(ngModel)]="searchFilterResult.sortedBy"
+            (onClick)="handleRadioClick()">
+        </p-radioButton>
+        <label for="latest">&nbsp;&nbsp;Latest</label>
+      </div>
+    </li>
+    <li>
+      <div class="p-field-radiobutton">
+        <p-radioButton
+            name="sortBy" value="popular" inputId="popular"
+            [(ngModel)]="searchFilterResult.sortedBy"
+            (onClick)="handleRadioClick()">
+        </p-radioButton>
+        <label for="oldest">&nbsp;&nbsp;Popular</label>
+      </div>
+    </li>
+    <!-- <li>
+      <div class="p-field-radiobutton">
+        <p-radioButton name="sortBy" value="year" [(ngModel)]="selectedSortBy" inputId="year"></p-radioButton>
+        <label for="oldest">&nbsp;&nbsp;Year</label>
+      </div>
+    </li> -->
+  </ul>
+
+</div>
+
+

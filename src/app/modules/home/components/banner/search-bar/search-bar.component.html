@@ -1,0 +1,13 @@
+<p-autoComplete
+    #autoCompleteSeries
+    [suggestions]="cachedSeriesNames"
+    [(ngModel)]="inputText"
+    (completeMethod)="handleSeriesSearch($event)"
+    (onSelect)="handleSeriesSelect($event)"
+    (onKeyUp)="$event.code === 'Enter' ? handleKeyUp($event) : 0"
+    (onBlur)="handleOnBlur($event)"
+    [dropdown]="true"
+    [placeholder]="'Find by series...'"
+    [inputStyle]="{'height': '38px'}">
+</p-autoComplete>
+

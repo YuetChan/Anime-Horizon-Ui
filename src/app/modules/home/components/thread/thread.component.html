@@ -1,0 +1,22 @@
+<div fxLayout="column" fxLayoutGap="10px">
+  <a href="#" class=""><h3>{{threadConfig.title}}</h3></a>
+  <p class="thread-description-p">{{threadConfig.description | randomTextTruncate : 150 : 50}}</p>
+
+  <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+    <div>
+      <a href="#" class="thread-series-a">Series: <b>Re:zero</b></a>
+      <br>
+      <p-tag
+          *ngIf="this.threadConfig.allowAudible"
+          value="Allow Audible"
+          severity="warning"
+          [style]="{'font-family': 'Arial, Helvetica, sans-serif', 'margin-top':'8px', 'margin-bottom':'8px'}">
+      </p-tag>
+    </div>
+    <p class="thread-creator-p">
+      <a href="#" class="thread-creator-a">By: <b>{{threadConfig.LnhUser.username}}</b></a>
+      <br>
+      <span class="update-time-ago-span"><i>Updated 5 mins ago</i></span>
+    </p>
+  </div>
+</div>
