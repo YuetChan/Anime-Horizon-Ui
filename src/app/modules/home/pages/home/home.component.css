@@ -44,9 +44,10 @@
   background-color: #ffffff;
 
   padding-bottom: 5px;
-  margin: 15px;
+  margin-left: 25px;
+  margin-right: 25px;
   margin-top: 0px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .threads-div{

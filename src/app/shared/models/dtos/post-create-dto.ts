@@ -1,4 +1,4 @@
-import { LnhUser } from '../../models/lnh-user';
+import { LnhUser } from 'src/app/shared/models/entities/lnh-user';
 
 export interface PostCreateDto {
   series : { seriesId : number, name : string },

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PiTagPanelComponent } from './pi-tag-panel.component';
+import { ContentEmptyComponent } from './content-empty.component';
 
-describe('PiTagPanelComponent', () => {
-  let component: PiTagPanelComponent;
-  let fixture: ComponentFixture<PiTagPanelComponent>;
+describe('ContentEmptyComponent', () => {
+  let component: ContentEmptyComponent;
+  let fixture: ComponentFixture<ContentEmptyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PiTagPanelComponent ]
+      declarations: [ ContentEmptyComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PiTagPanelComponent);
+    fixture = TestBed.createComponent(ContentEmptyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

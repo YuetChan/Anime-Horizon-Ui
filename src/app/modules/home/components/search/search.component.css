@@ -1,6 +1,7 @@
 ul {
   padding: 0;
   margin: 5px;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.7);
 }
 
 li {
@@ -9,8 +10,12 @@ li {
 
   font-size: 16px;
 
-  padding: 0 14px;
-  margin: 10px 0;
+  padding-top: 10px;
+  padding-right: 25px;
+  padding-bottom: 10px;
+
+  position: relative;
+  top: 1px;
 }
 
 a{
@@ -18,11 +23,18 @@ a{
   color: #303030;
 }
 
-i{
-  background: -webkit-linear-gradient(326deg,#ff4800 0%, #f7892f 74%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
+ul a:nth-child(1) { color: rgb(247, 137, 47); }
+ul a:nth-child(1) i { color: rgb(247, 137, 47); }
+ul a:nth-child(1) .options-li{ border-bottom: 1px solid rgb(247, 137, 47, 0.6); }
+
+
+ul a:hover{ color: rgb(247, 137, 47, 0.6); }
+ul a:hover i { color: rgb(247, 137, 47, 0.6); }
+ul a:hover .options-li{ border-bottom: 1px solid rgb(247, 137, 47, 0.6); }
+
+
+i{ color: #303030; }
 
 .search-filter-div{
   margin-left: 16px;
@@ -35,17 +47,10 @@ i{
   background-color: #E4E0E0;
 }
 
-.options-li{ border-left: 1px solid rgb(107, 107, 107, 0.4); }
-
 .filter-by-li{
-  text-align: right;
-
   font-size: 15px;
 
   min-width: 100px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: right;
 }
-
-/* .search-option-div{
-  border-bottom: 1px solid rgba(196, 196, 196, 0.7);
-} */

@@ -54,7 +54,7 @@ li {
   padding: 0 14px;
   margin: 10px 0;
 
-  font-size: 12px;
+  font-size: 13px;
   color: #303030;
 }
 
@@ -62,4 +62,6 @@ li {
   background: -webkit-linear-gradient(326deg,#ff4800 0%, #f7892f 74%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  font-size: 13px;
 }

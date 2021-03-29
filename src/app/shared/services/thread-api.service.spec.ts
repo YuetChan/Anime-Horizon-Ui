@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { ThreadApiService } from './thread-api.service';
 
-import { MetaApiService } from './meta-api.service';
-
-describe('MetaApiService', () => {
-  let service: MetaApiService;
+describe('ThreadApiService', () => {
+  let service: ThreadApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MetaApiService);
+    service = TestBed.inject(ThreadApiService);
   });
 
   it('should be created', () => {

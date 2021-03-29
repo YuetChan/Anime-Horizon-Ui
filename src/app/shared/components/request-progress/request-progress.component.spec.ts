@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PiChipComponent } from './pi-chip.component';
+import { RequestProgressComponent } from './request-progress.component';
 
-describe('PiChipComponent', () => {
-  let component: PiChipComponent;
-  let fixture: ComponentFixture<PiChipComponent>;
+describe('RequestProgressComponent', () => {
+  let component: RequestProgressComponent;
+  let fixture: ComponentFixture<RequestProgressComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PiChipComponent ]
+      declarations: [ RequestProgressComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PiChipComponent);
+    fixture = TestBed.createComponent(RequestProgressComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
