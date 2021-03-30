@@ -21,7 +21,7 @@
 
 .right-panel{
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #e4e0e0;
+  background-color: #ffffff;
 
   overflow-x: hidden;
   overflow-y: scroll;
@@ -47,7 +47,7 @@
   margin-left: 25px;
   margin-right: 25px;
   margin-top: 0px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .threads-div{
@@ -55,11 +55,16 @@
 
   margin: 25px;
   margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .thread-div{
   margin-bottom: 16px;
   border-bottom: 1px solid rgba(196, 196, 196, 0.7);
+}
+
+.thread-div:last-child{
+  border-bottom: 0px solid rgba(196, 196, 196, 0.7);
 }
 
 .sort-by-div{
@@ -70,15 +75,57 @@
   border-bottom: 1px solid #CED4DA;
 }
 
-@media only screen and (max-width: 600px) {
+.res.left-panel{
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+
+  .banner-app{
+    width: 100%;
+    left: 0px;
+  }
 
   .main-panel{
     margin-left: 0px;
     margin-right: 0px;
   }
 
+  .left-panel{
+    display: none;
+  }
+
+  .right-panel{
+    display: none;
+  }
+
+  .res.left-panel{
+    width: 100%;
+    display: block;
+  }
+
 }
 
+.content-paginator-div {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0px;
 
+  margin-left: 30px;
+  margin-right: 30px;
+  border-top: 1px solid rgba(196, 196, 196, 0.7);
 
+  background-color: #ffffff;
+}
 
+.post-paginator-div {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0px;
+
+  margin-left: 20px;
+  margin-right: 20px;
+  border-top: 1px solid rgba(196, 196, 196, 0.7);
+
+  background-color: #ffffff;
+}

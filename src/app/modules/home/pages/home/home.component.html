@@ -9,22 +9,57 @@
         <div class="thread-div" *ngFor="let threadConfig of threadsConfig">
           <app-thread [threadConfig]="threadConfig"></app-thread>
         </div>
-        <br>
+      </div>
+      <div class="post-paginator-div">
         <p-paginator
             #post_paginator
-            class="post-paginator"
             [rows]="threadsPaginatorConfig.pageSize"
             [totalRecords]="threadsPaginatorConfig.totalRecords"
             (onPageChange)="changeThreadsPage($event)"
             [showJumpToPageDropdown]="true"
-            [showPageLinks]="false"
-            [style]="{'padding-bottom': '5px', 'padding-top' : '5px'}">
+            [showPageLinks]="false">
         </p-paginator>
+        <br>
       </div>
     </div>
     <div class="right-panel">
       <app-content></app-content>
+      <div class="content-paginator-div">
+        <p-paginator
+            [rows]="1"
+            [totalRecords]="1"
+            [showJumpToPageDropdown]="true"
+            [showPageLinks]="false">
+        </p-paginator>
+        <br>
+      </div>
+    </div>
+
+    <div class="res left-panel">
+      <div class="search-div">
+        <app-search></app-search>
+      </div>
+      <div class="threads-div">
+        <div class="thread-div" *ngFor="let threadConfig of threadsConfig">
+          <app-thread [threadConfig]="threadConfig"></app-thread>
+        </div>
+        <div>
+          <p-paginator
+              #post_paginator
+              [rows]="threadsPaginatorConfig.pageSize"
+              [totalRecords]="threadsPaginatorConfig.totalRecords"
+              (onPageChange)="changeThreadsPage($event)"
+              [showJumpToPageDropdown]="true"
+              [showPageLinks]="false">
+          </p-paginator>
+          <br>
+        </div>
+      </div>
     </div>
   </div>
+
+
+
+
 </div>
 
