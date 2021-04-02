@@ -12,23 +12,23 @@ import { HttpHeaderTemplateService } from '../services/http-header-template.serv
 export class ThreadApiService {
 
   domainURL = 'http://localhost:8080/';
-  postURL = 'posts';
+  postURL = 'threads';
 
   constructor(
     private httpClient: HttpClient,
     private httpHeaderTemplate : HttpHeaderTemplateService) { }
 
   fetchThreadsByFilter(filterConfig : {
-    lnhUser : string, type : string,
-    allowAudible : boolean, genres : string[],
+    lnhUser? : string, type? : string,
+    allowAudible? : boolean, genres? : string[],
     pageable? : Pageable
   }) : Observable<any> {
     let params = new HttpParams();
-    params = params.append('lnhUser', filterConfig.lnhUser);
-    params = params.append('type', filterConfig.type);
-    params = params.append('allowAudible', filterConfig.allowAudible.toString());
-    filterConfig.genres.forEach(genre => params = params.append('genres', genre));
-    params = params.append('pageNum', filterConfig.pageable.pageNum.toString()).append('pageSize', filterConfig.pageable.pageSize.toString());
+    params = filterConfig.lnhUser ? params.append('lnhUser', filterConfig.lnhUser) : params;
+    params = filterConfig.type ? params.append('type', filterConfig.type) : params;
+    params = filterConfig.allowAudible ? params.append('allowAudible', filterConfig.allowAudible.toString()) : params;
+    filterConfig.genres?.forEach(genre => params = params.append('genres', genre));
+    params = filterConfig.pageable ? params.append('pageNum', filterConfig.pageable.pageNum.toString()).append('pageSize', filterConfig.pageable.pageSize.toString()) : params;
 
 
     return this.httpClient.get(this.domainURL + this.postURL, {
@@ -47,6 +47,8 @@ export class ThreadApiService {
         headers : this.httpHeaderTemplate.getHeadersForJsonReqAndRes()
       });
   }
+
+
 
 }
 

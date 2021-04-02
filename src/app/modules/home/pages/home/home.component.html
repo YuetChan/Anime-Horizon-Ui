@@ -2,20 +2,21 @@
   <app-banner class="banner-app"></app-banner>
   <div fxLayout="row" fxLayoutAlign="start start">
     <div class="left-panel">
-      <div class="search-div">
-        <app-search></app-search>
+      <div class="search-container">
+        <app-search (searchResultChanged)="handleSearchChange($event)">
+          </app-search>
       </div>
-      <div class="threads-div">
-        <div class="thread-div" *ngFor="let threadConfig of threadsConfig">
+      <div class="threads-container">
+        <div class="thread-container" *ngFor="let threadConfig of threadsConfig">
           <app-thread [threadConfig]="threadConfig"></app-thread>
         </div>
       </div>
-      <div class="post-paginator-div">
+      <div class="threads-paginator-container">
         <p-paginator
             #post_paginator
             [rows]="threadsPaginatorConfig.pageSize"
-            [totalRecords]="threadsPaginatorConfig.totalRecords"
-            (onPageChange)="changeThreadsPage($event)"
+            [totalRecords]="threadsPaginatorConfig.totalElements"
+            (onPageChange)="handleThreadsPaginatorChange($event)"
             [showJumpToPageDropdown]="true"
             [showPageLinks]="false">
         </p-paginator>
@@ -24,10 +25,12 @@
     </div>
     <div class="right-panel">
       <app-content></app-content>
-      <div class="content-paginator-div">
+      <div class="contents-paginator-container">
         <p-paginator
-            [rows]="1"
-            [totalRecords]="1"
+            #contents_paginator
+            [rows]="contentsPaginatorConfig.pageSize"
+            [totalRecords]="contentsPaginatorConfig.totalElements"
+            (onPageChange)="handleContentsPaginatorChange($event)"
             [showJumpToPageDropdown]="true"
             [showPageLinks]="false">
         </p-paginator>
@@ -36,19 +39,19 @@
     </div>
 
     <div class="res left-panel">
-      <div class="search-div">
+      <div class="search-container">
         <app-search></app-search>
       </div>
-      <div class="threads-div">
-        <div class="thread-div" *ngFor="let threadConfig of threadsConfig">
+      <div class="threads-container">
+        <div class="thread-container" *ngFor="let threadConfig of threadsConfig">
           <app-thread [threadConfig]="threadConfig"></app-thread>
         </div>
         <div>
           <p-paginator
-              #post_paginator
+              #threads_paginator
               [rows]="threadsPaginatorConfig.pageSize"
-              [totalRecords]="threadsPaginatorConfig.totalRecords"
-              (onPageChange)="changeThreadsPage($event)"
+              [totalRecords]="threadsPaginatorConfig.totalElements"
+              (onPageChange)="handleThreadsPaginatorChange($event)"
               [showJumpToPageDropdown]="true"
               [showPageLinks]="false">
           </p-paginator>
@@ -57,9 +60,5 @@
       </div>
     </div>
   </div>
-
-
-
-
 </div>
 

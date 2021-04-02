@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Paginator } from 'primeng/paginator';
-import { concat, of, throwError } from 'rxjs';
+import { SearchApiService } from 'src/app/shared/services/search-api.service';
 import { ThreadApiService } from 'src/app/shared/services/thread-api.service';
 import { LoadingStateMachine } from 'src/app/shared/states-machine/loading-state-machine';
 
@@ -11,162 +12,194 @@ import { LoadingStateMachine } from 'src/app/shared/states-machine/loading-state
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChild('post_paginator', { static : true }) paginatorRef: Paginator;
+  @ViewChild('threads_paginator', { static : true }) threadsPaginatorRef: Paginator;
+  @ViewChild('contents_paginator', { static : true }) contentsPaginatorRef: Paginator;
 
-  threadsConfig : {}[] = [
-    {
-      title :"Re:ZERO - vol. 1 LN",
-      description : "Re:ZERO -Starting Life in Another World-, Vol. 1 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
-      updatedAt : "",
-      updatedBy : "",
-      uploadedAt : "",
-      uploadedBy : "",
-      allowAudible : true,
-      LnhUser: {
-        userId : 1,
-        username: "Audio Novel"
-      }
-    },
-    {
-      title :"Re:ZERO - vol. 2 LN",
-      description : "Re:ZERO -Starting Life in Another World-, Vol. 2 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
-      updatedAt: "",
-      updatedBy: "",
-      uploadedAt: "",
-      uploadedBy: "",
-      allowAudible : false,
-      LnhUser: {
-        userId : 1,
-        username: "Audio Novel"
-      }
-    },
-    {
-      title :"Re:ZERO - vol. 3 LN",
-      description : "Re:ZERO -Starting Life in Another World-, Vol. 3 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
-      updatedAt: "",
-      updatedBy: "",
-      uploadedAt: "",
-      uploadedBy: "",
-      allowAudible : false,
-      LnhUser: {
-        userId : 1,
-        username: "Audio Novel"
-      }
-    },
-    {
-      title :"Re:ZERO - vol. 4 LN",
-      description : "Re:ZERO -Starting Life in Another World-, Vol. 3 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
-      updatedAt: "",
-      updatedBy: "",
-      uploadedAt: "",
-      uploadedBy: "",
-      allowAudible : true,
-      LnhUser: {
-        userId : 1,
-        username: "Audio Novel"
-      }
-    },
-    {
-      title :"Re:ZERO - vol. 5 LN",
-      description : "Re:ZERO -Starting Life in Another World-, Vol. 3 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
-      updatedAt: "",
-      updatedBy: "",
-      uploadedAt: "",
-      uploadedBy: "",
-      allowAudible : false,
-      LnhUser: {
-        userId : 1,
-        username: "Audio Novel"
-      }
-    },
-    {
-      title :"Re:ZERO - vol. 6 LN",
-      description : "Re:ZERO -Starting Life in Another World-, Vol. 3 - Light Novels Subaru Natsuki was just trying to get to the convenience store but wound up summoned to another world. He encounters the usual things--life-threatening situations, silver haired beauties, cat fairies--you know, normal stuff. All that would be bad enough, but he's also gained the most inconvenient magical ability of all--time travel, but he's got to die to use it. How do you repay someone who saved your life when all you can do is die?",
-      updatedAt: "",
-      updatedBy: "",
-      uploadedAt: "",
-      uploadedBy: "",
-      allowAudible : false,
-      LnhUser: {
-        userId : 1,
-        username: "Audio Novel"
-      }
-    }
-
-
-  ];
-  contentConfigs : {}[] = []
 
   threadsFetechMachine = new LoadingStateMachine();
-
-  defaultThreadFetchFilterConfig = {
-    lnhUser: '',
-    type: 'NOVEL',
-    allowAudible: false,
-    genres: [],
-    pageable: {
-      pageNum: 0,
-      pageSize: 10
-    }
-  }
-  defaultFetchContext = {
-    fetchInterface : throwError('catch me'),
-    maxRefetchCount : 3
-  }
-
-
-  loadingConfig = {
-    threadLoading: true,
-    threadLoadSuccess: false,
-
-    contentLoading: true,
-    contentLoadSuccess: false,
-
-    errorMessage: 'Oops, service currently unavailable'
-  }
-
-
+  threadsConfig : {}[] = [];
   threadsData = [];
   threadsPaginatorConfig = {
     pageSize : 0,
-    totalRecords : 0,
+    totalPages : 0,
+    totalElements: 0
   }
 
-  contentData = [];
+  contentsFetechMachine = new LoadingStateMachine();
+  contentsConfig : {}[] = []
+  contentsData = [];
+  contentsPaginatorConfig = {
+    pageSize : 0,
+    totalPages : 0,
+    totalElements: 0
+  }
+
+  loadingConfig = {
+    threadsLoading: true,
+    threadsLoadSuccess: false,
+
+    contentsLoading: true,
+    contentsLoadSuccess: false,
+  }
+
+  errorConfig = { fetchFailMsg : 'Oops, service currently unavailable' }
 
 
-  constructor(private threadApiService : ThreadApiService) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private threadApiService : ThreadApiService,
+              private searchApiService : SearchApiService) { }
   ngOnInit(): void {
-
+    this.initThreadsConfig();
+    this.initSearchFootprint();
   }
+
 
   initThreadsConfig() {
-    this.threadsFetechMachine.context = this.defaultFetchContext;
-    this.threadsFetechMachine.fetch().subscribe();
+    this.threadsFetechMachine.context = {
+      fetchInterface: this.threadApiService.fetchThreadsByFilter({
+        type: 'NOVEL',
+        pageable: {
+          pageNum: 0,
+          pageSize: 20
+        }
+      }),
+      maxRefetchCount: 3
+    }
+
+    this.threadsFetechMachine.fetch().subscribe(data => {
+      data.threads.map(thread => {
+        this.threadsConfig.push({
+          threadId: thread.threadId,
+          series: thread.series.name,
+
+          title: thread.title,
+          description: thread.contents.length ? thread.contents[0] : "",
+          type: thread.type.name,
+          genres: thread.series.categories.map((genre => genre.name)),
+
+          uploadedAt: new Date(thread.uploadedAt),
+          uploadedBy: thread.uploadedBy,
+          editedAt: new Date(thread.editedAt),
+          editedBy: thread.editedBy,
+
+          allowAudible: thread.allowAudible,
+
+          lnhUser: {
+            username: 'Audio Novel'
+          }
+        })
+      })
+
+      this.threadsPaginatorConfig.pageSize = data.pageSize;
+      this.threadsPaginatorConfig.totalElements = data.totalElements;
+    });
   }
 
   initSearchFootprint() {
 
   }
 
-  changeThreadsPage(event){
-    // this.threadFetechMachine.reset();
 
-    // let newFetchFilterConfig = Object.assign({}, this.defaultThreadFetchFilterConfig);
-    // let newFetchContext = Object.assign({}, this.defaultFetchContext);
+  handleThreadsPaginatorChange(event){
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        threadsPageNum: event.page,
+        threadsPageSize: 20
+      },
+      queryParamsHandling: 'merge'
+    });
 
-    // newFetchFilterConfig.pageable = { pageNum: event.page, pageSize: 10 };
-    // newFetchContext.fetchInterface = this.threadApiService.fetchThreadsByFilter(newFetchFilterConfig);
 
-    // this.threadFetechMachine.context = newFetchContext;
-    // this.threadFetechMachine.fetch().subscribe(data => {
-    //   this.threadsData = data;
-    //   this.loadingConfig.threadLoadSuccess = true;
-    //   this.loadingConfig.threadLoading = false;
-    // }, err => {
-    //   this.loadingConfig.threadLoadSuccess = false;
-    //   this.loadingConfig.threadLoading = false;
-    // });
+    let threadsFetchFilterConfig = {};
+    this.route.queryParams.subscribe(params => {
+      threadsFetchFilterConfig = {
+        series: this.searchApiService.findFirstSeries(params['series']),
+        type: params['type'],
+        genres: params['genres'] as string[],
+
+        lnhUser: params['lnhUser'],
+        allowAudible: params['allowAudible'],
+
+        pageable: {
+          pageNum: params['threadsPageNum'],
+          pageSize: params['threadsPageSize']
+        }
+      }
+    })
+
+
+    this.threadsFetechMachine.reset();
+    this.threadsFetechMachine.context = {
+      fetchInterface: this.threadApiService.fetchThreadsByFilter(threadsFetchFilterConfig),
+      maxRefetchCount: 3
+    }
+    this.threadsFetechMachine.fetch().subscribe(data => {
+      this.threadsData = data;
+
+      this.loadingConfig.threadsLoadSuccess = true;
+      this.loadingConfig.threadsLoading = false;
+    }, err => {
+      this.loadingConfig.threadsLoadSuccess = false;
+      this.loadingConfig.threadsLoading = false;
+    });
+  }
+
+  handleContentsPaginatorChange(event){
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        contentsPageNum: event.page,
+        contentsPageSize: 20
+      },
+      queryParamsHandling: 'merge'
+    });
+
+
+    let contentsFetchFilterConfig = {};
+    this.route.queryParams.subscribe(params => {
+      contentsFetchFilterConfig = {
+        series: params['series'],
+        type: params['type'],
+        genres: params['genres'],
+
+        lnhUser: params['lnhUser'],
+        allowAudible: params['allowAudible'],
+
+        pageable: {
+          pageNum: params['contentsPageNum'],
+          pageSize: params['contentsPageSize']
+        }
+      }
+    })
+
+
+    this.contentsFetechMachine.reset();
+    this.contentsFetechMachine.context = {
+      fetchInterface: this.threadApiService.fetchThreadsByFilter(contentsFetchFilterConfig),
+      maxRefetchCount: 3
+    }
+    this.contentsFetechMachine.fetch().subscribe(data => {
+      this.contentsData = data;
+
+      this.loadingConfig.contentsLoadSuccess = true;
+      this.loadingConfig.contentsLoading = false;
+    }, err => {
+      this.loadingConfig.contentsLoadSuccess = false;
+      this.loadingConfig.contentsLoading = false;
+    });
+  }
+
+  handleSearchChange(event){
+    let queryParams = { };
+    Object.keys(event)?.forEach(key => queryParams = { ...queryParams, ...{ [key]: event[key] }})
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge'
+    });
   }
 
 

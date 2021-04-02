@@ -1,22 +1,28 @@
 export interface ThreadConfig {
+
+  threadId: number;
+  series : string;
+
   title : string;
   description : string;
+  genres: string[];
+  type: string;
 
-  updatedBy : string;
-  updatedAt: string;
+  lnhUser : {
+    userId : number,
+    username : string,
+    useremail : string,
+    avatarURL? : string
+  }
 
+  editedBy : string;
+  editedAt: Date;
   uploadedBy : string;
-  uploadedAt: string;
+  uploadedAt: Date;
 
   allowAudible? : boolean;
 
   view? : number;
 
-  LnhUser : {
-    userId : number,
-    username : string,
-    useremail? : string,
-    avatarURL? : string
-  }
 }
 

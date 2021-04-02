@@ -1,10 +1,14 @@
 <div fxLayout="column" fxLayoutGap="10px">
   <a href="#" class=""><h3>{{threadConfig.title}}</h3></a>
-  <p class="thread-description-p">{{threadConfig.description | randomTextTruncate : 150 : 50}}</p>
+  <p class="thread-description-p">{{threadConfig.description | randomTextTruncate : 120 : 25}}</p>
 
   <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
-    <div>
-      <a href="#" class="thread-series-a">Series: <b>Re:zero</b></a>
+    <div fxFlex="60">
+      <a  href="javascript:void(0);"
+          (click)="handleSeriesClick(threadConfig.series)"
+          class="thread-series-a">
+          Series: <b>{{threadConfig.series}}</b>
+      </a>
       <br>
       <p-tag
           *ngIf="this.threadConfig.allowAudible"
@@ -13,10 +17,17 @@
           [style]="{'font-family': 'Arial, Helvetica, sans-serif', 'margin-top':'8px', 'margin-bottom':'8px'}">
       </p-tag>
     </div>
-    <p class="thread-creator-p">
-      <a href="#" class="thread-creator-a">By: <b>{{threadConfig.LnhUser.username}}</b></a>
+    <p class="thread-creator-p" fxFlex="40">
+      <a  href="javascript:void(0);"
+          (click)="handleLnhUserClick(threadConfig.lnhUser.useremail)"
+          class="thread-creator-a">
+          By: <b>{{threadConfig.lnhUser.username}}</b>
+      </a>
       <br>
-      <span class="update-time-ago-span"><i>Updated 5 mins ago</i></span>
+      <span class="update-time-ago-span">
+        <i>Updated at<br>
+        {{threadConfig.editedAt | piTimeAgo }} </i>
+      </span>
     </p>
   </div>
 </div>

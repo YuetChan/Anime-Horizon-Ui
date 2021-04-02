@@ -5,14 +5,13 @@ ul {
 
 li {
   list-style: none;
+  color: #303030;
+  font-size: 15px;
 
   padding: 0px;
   margin: 5px 0;
-
-  color: #303030;
-  font-size: 15px;
 }
 
 b{ color:#303030; }
 
-.genres-ul li { width: 150px; }
+.genres-list li { width: 150px; }

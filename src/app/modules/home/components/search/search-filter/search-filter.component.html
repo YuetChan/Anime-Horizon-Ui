@@ -1,19 +1,17 @@
 <div>
-
   <ul>
     <li>
       <b>Genres:</b>
     </li>
     <li>
-      <ul
-          class="genres-ul"
+      <ul class="genres-list"
           fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
-        <li *ngFor="let genre of genres">
+        <li *ngFor="let genre of searchFilterConfig.genres">
           <p-checkbox
               [value]="genre.code"
               [label]="genre.name"
               [(ngModel)]="searchFilterResult.genres"
-              (onChange)="handleCheckboxCheck()">
+              (onChange)="handleCheckboxCheck($event)">
           </p-checkbox>
         </li>
       </ul>
@@ -24,34 +22,17 @@
     <li>
       <b>Sort by:</b>
     </li>
-    <li>
+    <li *ngFor="let sortedBy of searchFilterConfig.sortedBys">
       <div class="p-field-radiobutton">
         <p-radioButton
-            name="sortBy" value="latest" inputId="latest"
+            [name]="sortedBy.code" [value]="sortedBy.code" [inputId]="sortedBy.code"
             [(ngModel)]="searchFilterResult.sortedBy"
             (onClick)="handleRadioClick()">
         </p-radioButton>
-        <label for="latest">&nbsp;&nbsp;Latest</label>
+        <label>&nbsp;&nbsp;{{sortedBy.name}}</label>
       </div>
     </li>
-    <li>
-      <div class="p-field-radiobutton">
-        <p-radioButton
-            name="sortBy" value="popular" inputId="popular"
-            [(ngModel)]="searchFilterResult.sortedBy"
-            (onClick)="handleRadioClick()">
-        </p-radioButton>
-        <label for="oldest">&nbsp;&nbsp;Popular</label>
-      </div>
-    </li>
-    <!-- <li>
-      <div class="p-field-radiobutton">
-        <p-radioButton name="sortBy" value="year" [(ngModel)]="selectedSortBy" inputId="year"></p-radioButton>
-        <label for="oldest">&nbsp;&nbsp;Year</label>
-      </div>
-    </li> -->
   </ul>
-
 </div>
 
 

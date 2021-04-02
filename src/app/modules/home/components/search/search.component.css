@@ -25,9 +25,9 @@ a{
 }
 
 
-ul a:nth-child(1) { color: rgb(247, 137, 47); }
-ul a:nth-child(1) i { color: rgb(247, 137, 47); }
-ul a:nth-child(1) .options-li{ border-bottom: 1px solid rgb(247, 137, 47, 0.6); }
+.tab-active { color: rgb(247, 137, 47); }
+.tab-active i { color: rgb(247, 137, 47); }
+.tab-active .options-li{ border-bottom: 1px solid rgb(247, 137, 47, 0.6); }
 
 
 ul a:hover{ color: rgb(247, 137, 47, 0.6); }
