@@ -5,7 +5,7 @@
           (click)="handleTabClick(tab.code)"
           href="javascript:void(0);">
           <li class="options-li">
-            <i class="pi pi-pencil"></i>
+            <i [class]="tab.class"></i>
             &nbsp;&nbsp;<b>{{tab.name}}</b>
           </li>
       </a>

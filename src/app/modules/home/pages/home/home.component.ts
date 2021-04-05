@@ -12,15 +12,17 @@ import { LoadingStateMachine } from 'src/app/shared/states-machine/loading-state
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChild('threads_paginator', { static : true }) threadsPaginatorRef: Paginator;
+  @ViewChild('threadsPaginator', { static : true }) threadsPaginatorRef: Paginator;
   @ViewChild('contents_paginator', { static : true }) contentsPaginatorRef: Paginator;
 
+
+  DEFAULT_PAGE_SIZE = 1;
 
   threadsFetechMachine = new LoadingStateMachine();
   threadsConfig : {}[] = [];
   threadsData = [];
   threadsPaginatorConfig = {
-    pageSize : 0,
+    pageSize : this.DEFAULT_PAGE_SIZE,
     totalPages : 0,
     totalElements: 0
   }
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit {
   contentsConfig : {}[] = []
   contentsData = [];
   contentsPaginatorConfig = {
-    pageSize : 0,
+    pageSize : this.DEFAULT_PAGE_SIZE,
     totalPages : 0,
     totalElements: 0
   }
@@ -52,48 +54,74 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.initThreadsConfig();
     this.initSearchFootprint();
+
+
   }
 
 
   initThreadsConfig() {
-    this.threadsFetechMachine.context = {
-      fetchInterface: this.threadApiService.fetchThreadsByFilter({
-        type: 'NOVEL',
-        pageable: {
-          pageNum: 0,
-          pageSize: 20
-        }
-      }),
-      maxRefetchCount: 3
-    }
+    let threadsFetchFilterConfig = {};
+    this.route.queryParams.subscribe(params => {
+      let pageable = {
+        pageNum: this.searchApiService.findFirstValidNumber(params['threadsPageNum']),
+        pageSize: this.DEFAULT_PAGE_SIZE
+      }
 
-    this.threadsFetechMachine.fetch().subscribe(data => {
-      data.threads.map(thread => {
-        this.threadsConfig.push({
-          threadId: thread.threadId,
-          series: thread.series.name,
+      threadsFetchFilterConfig = {
+        series: this.searchApiService.findFirstItem(params['series']),
+        type: this.searchApiService.findFirstValidType(params['type']),
+        genres: this.searchApiService.findValidGenres(params['genres'] ? (Array.isArray(params['genres']) ? params['genres'] : []) : []),
 
-          title: thread.title,
-          description: thread.contents.length ? thread.contents[0] : "",
-          type: thread.type.name,
-          genres: thread.series.categories.map((genre => genre.name)),
+        lnhUser: this.searchApiService.findFirstItem(params['lnhUser']),
+        allowAudible: this.searchApiService.findFirstValidNullableBoolean(params['allowAudible']),
 
-          uploadedAt: new Date(thread.uploadedAt),
-          uploadedBy: thread.uploadedBy,
-          editedAt: new Date(thread.editedAt),
-          editedBy: thread.editedBy,
+        pageable: pageable
+      }
 
-          allowAudible: thread.allowAudible,
 
-          lnhUser: {
-            username: 'Audio Novel'
-          }
+      this.threadsFetechMachine.reset();
+      this.threadsFetechMachine.context = {
+        fetchInterface: this.threadApiService.fetchThreadsByFilter(threadsFetchFilterConfig),
+        maxRefetchCount: 3
+      }
+
+      this.threadsFetechMachine.fetch().subscribe(data => {
+        this.threadsConfig = [];
+        data.threads.map(thread => {
+          this.threadsConfig.push({
+            threadId: thread.threadId,
+            series: thread.series.name,
+
+            title: thread.title,
+            description: thread.contents.length ? thread.contents[0] : "",
+            type: thread.type.name,
+            genres: thread.series.categories.map((genre => genre.name)),
+
+            uploadedAt: new Date(thread.uploadedAt),
+            uploadedBy: thread.uploadedBy,
+            editedAt: new Date(thread.editedAt),
+            editedBy: thread.editedBy,
+
+            allowAudible: thread.allowAudible,
+
+            lnhUser: {
+              username: thread.lnhUser.username,
+              useremail: thread.lnhUser.useremail
+            }
+          })
         })
-      })
 
-      this.threadsPaginatorConfig.pageSize = data.pageSize;
-      this.threadsPaginatorConfig.totalElements = data.totalElements;
-    });
+        this.threadsPaginatorConfig.pageSize = data.pageSize;
+        this.threadsPaginatorConfig.totalElements = data.totalElements;
+        console.log(pageable.pageNum >= data.totalPages ? data.totalPages -1 : pageable.pageNum)
+        console.log(this.threadsPaginatorRef.getPage());
+        console.log(this.threadsPaginatorRef.getPage() !== pageable.pageNum);
+        if(this.threadsPaginatorRef.getPage() !== pageable.pageNum)
+          setTimeout(() => this.threadsPaginatorRef.changePage(pageable.pageNum), 0);
+      });
+
+    })
+
   }
 
   initSearchFootprint() {
@@ -102,47 +130,13 @@ export class HomeComponent implements OnInit {
 
 
   handleThreadsPaginatorChange(event){
+    console.log(event);
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
-        threadsPageNum: event.page,
-        threadsPageSize: 20
+        threadsPageNum: event.page
       },
       queryParamsHandling: 'merge'
-    });
-
-
-    let threadsFetchFilterConfig = {};
-    this.route.queryParams.subscribe(params => {
-      threadsFetchFilterConfig = {
-        series: this.searchApiService.findFirstSeries(params['series']),
-        type: params['type'],
-        genres: params['genres'] as string[],
-
-        lnhUser: params['lnhUser'],
-        allowAudible: params['allowAudible'],
-
-        pageable: {
-          pageNum: params['threadsPageNum'],
-          pageSize: params['threadsPageSize']
-        }
-      }
-    })
-
-
-    this.threadsFetechMachine.reset();
-    this.threadsFetechMachine.context = {
-      fetchInterface: this.threadApiService.fetchThreadsByFilter(threadsFetchFilterConfig),
-      maxRefetchCount: 3
-    }
-    this.threadsFetechMachine.fetch().subscribe(data => {
-      this.threadsData = data;
-
-      this.loadingConfig.threadsLoadSuccess = true;
-      this.loadingConfig.threadsLoading = false;
-    }, err => {
-      this.loadingConfig.threadsLoadSuccess = false;
-      this.loadingConfig.threadsLoading = false;
     });
   }
 
@@ -150,49 +144,50 @@ export class HomeComponent implements OnInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
-        contentsPageNum: event.page,
-        contentsPageSize: 20
+        contentsPageNum: event.page
       },
       queryParamsHandling: 'merge'
     });
 
 
-    let contentsFetchFilterConfig = {};
-    this.route.queryParams.subscribe(params => {
-      contentsFetchFilterConfig = {
-        series: params['series'],
-        type: params['type'],
-        genres: params['genres'],
+    // let contentsFetchFilterConfig = {};
+    // this.route.queryParams.subscribe(params => {
+    //   contentsFetchFilterConfig = {
+    //     series: params['series'],
+    //     type: params['type'],
+    //     genres: params['genres'],
 
-        lnhUser: params['lnhUser'],
-        allowAudible: params['allowAudible'],
+    //     lnhUser: params['lnhUser'],
+    //     allowAudible: params['allowAudible'],
 
-        pageable: {
-          pageNum: params['contentsPageNum'],
-          pageSize: params['contentsPageSize']
-        }
-      }
-    })
+    //     pageable: {
+    //       pageNum: params['contentsPageNum'],
+    //       pageSize: this.DEFAULT_PAGE_SIZE
+    //     }
+    //   }
+    // })
 
 
-    this.contentsFetechMachine.reset();
-    this.contentsFetechMachine.context = {
-      fetchInterface: this.threadApiService.fetchThreadsByFilter(contentsFetchFilterConfig),
-      maxRefetchCount: 3
-    }
-    this.contentsFetechMachine.fetch().subscribe(data => {
-      this.contentsData = data;
+    // this.contentsFetechMachine.reset();
+    // this.contentsFetechMachine.context = {
+    //   fetchInterface: this.threadApiService.fetchThreadsByFilter(contentsFetchFilterConfig),
+    //   maxRefetchCount: 3
+    // }
+    // this.contentsFetechMachine.fetch().subscribe(data => {
+    //   this.contentsData = data;
 
-      this.loadingConfig.contentsLoadSuccess = true;
-      this.loadingConfig.contentsLoading = false;
-    }, err => {
-      this.loadingConfig.contentsLoadSuccess = false;
-      this.loadingConfig.contentsLoading = false;
-    });
+    //   this.loadingConfig.contentsLoadSuccess = true;
+    //   this.loadingConfig.contentsLoading = false;
+    // }, err => {
+    //   this.loadingConfig.contentsLoadSuccess = false;
+    //   this.loadingConfig.contentsLoading = false;
+    // });
   }
 
   handleSearchChange(event){
+    console.log('called')
     let queryParams = { };
+    queryParams = {...queryParams, ...{ lnhUser : null }, ...{ series : null }};
     Object.keys(event)?.forEach(key => queryParams = { ...queryParams, ...{ [key]: event[key] }})
 
     this.router.navigate([], {
@@ -202,6 +197,27 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  handleLnhUserClick(event){
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        genres: null,
+        lnhUser: event
+      },
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  handleSeriesClick(event){
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        genres: null,
+        series: event
+      },
+      queryParamsHandling: 'merge'
+    });
+  }
 
 
 }

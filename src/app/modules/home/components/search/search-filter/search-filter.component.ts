@@ -26,7 +26,7 @@ export class SearchFilterComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       let genresWithDuplicates = [
-        ...this.searchFilterResult.genres,
+        ...[],
         ...(params['genres'] ? (Array.isArray(params['genres']) ? params['genres'] : [params['genres']]) : [])];
 
       let genresWithoutDuplicates = genresWithDuplicates.filter((n, i) => genresWithDuplicates.indexOf(n) === i);
@@ -48,19 +48,22 @@ export class SearchFilterComponent implements OnInit {
   }
 
   initDefaultSearchFilterConfigAndResult(){
-    this.searchFilterResult = {
-      sortedBy : this.searchApiService.getValidSortedBy()[0].code,
-      genres : []
-    }
-
     this.searchFilterConfig = {
       sortedBys : this.searchApiService.getValidSortedBy(),
       genres : this.searchApiService.getValidGenres()
     }
+
+    this.searchFilterResult = {
+      sortedBy : this.searchFilterConfig.sortedBys[0].code,
+      genres : []
+    }
   }
 
 
-  handleCheckboxCheck() { this.searchFilterResultChanged.emit(this.searchFilterResult); }
+  handleCheckboxCheck() {
+    console.log(this.searchFilterResult);
+    this.searchFilterResultChanged.emit(this.searchFilterResult);
+  }
   handleRadioClick(){ this.searchFilterResultChanged.emit(this.searchFilterResult); }
 
 }

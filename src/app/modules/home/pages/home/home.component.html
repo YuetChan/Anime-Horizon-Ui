@@ -3,17 +3,20 @@
   <div fxLayout="row" fxLayoutAlign="start start">
     <div class="left-panel">
       <div class="search-container">
-        <app-search (searchResultChanged)="handleSearchChange($event)">
-          </app-search>
+        <app-search (searchResultChanged)="handleSearchChange($event)"></app-search>
       </div>
       <div class="threads-container">
         <div class="thread-container" *ngFor="let threadConfig of threadsConfig">
-          <app-thread [threadConfig]="threadConfig"></app-thread>
+          <app-thread
+              [threadConfig]="threadConfig"
+              (lnhUserClick)="handleLnhUserClick($event)"
+              (seriesClick)="handleSeriesClick($event)">
+          </app-thread>
         </div>
       </div>
       <div class="threads-paginator-container">
         <p-paginator
-            #post_paginator
+            #threadsPaginator
             [rows]="threadsPaginatorConfig.pageSize"
             [totalRecords]="threadsPaginatorConfig.totalElements"
             (onPageChange)="handleThreadsPaginatorChange($event)"
@@ -48,7 +51,6 @@
         </div>
         <div>
           <p-paginator
-              #threads_paginator
               [rows]="threadsPaginatorConfig.pageSize"
               [totalRecords]="threadsPaginatorConfig.totalElements"
               (onPageChange)="handleThreadsPaginatorChange($event)"

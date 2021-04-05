@@ -8,56 +8,58 @@ export class SearchApiService {
   genres = [
     {
       name : 'Fantasy',
-      code : 'fantasy',
+      code : 'FANTASY',
       inactive : false
     },{
       name : 'Comedy',
-      code : 'comedy',
+      code : 'COMEDY',
       inactive : false
     },{
       name : 'Adventure',
-      code : 'adventure',
+      code : 'ADVENTURE',
       inactive : false
     },{
       name : 'Romance ',
-      code : 'romance',
+      code : 'ROMANCE',
       inactive : false
     },{
       name : 'Non Human ',
-      code : 'non_human',
+      code : 'NON_HUMAN',
       inactive : false
     },{
       name : 'Isekai',
-      code : 'isekai',
+      code : 'ISEKAI',
       inactive : false
     },{
       name : 'Action',
-      code : 'action',
+      code : 'ACTION',
       inactive : false
     },{
       name : 'School Life',
-      code : 'school_life',
+      code : 'SCHOOL_LIFE',
       inactive : false
     }
   ]
   type = [{
     name : 'Novel',
-    code : 'novel',
+    code : 'NOVEL',
     inactive : false,
-    default : true
+    default : true,
+    class : 'pi pi-pencil'
   },{
     name : 'Audible',
-    code : 'audible',
+    code : 'AUDIBLE',
     inactive : false,
-    default : false
+    default : false,
+    class : 'pi pi-volume-up'
   },{
     name : 'Discuss',
-    code : 'discuss',
-    inactive : false,
+    code : 'DISCUSS',
+    inactive : true,
     default : false
   }];
 
-  sortedBy = [
+  sortedBys = [
     {
       name : 'Latest',
       code : 'latest',
@@ -76,25 +78,65 @@ export class SearchApiService {
   getValidTypes() {return this.type; }
   getValidGenres(){ return this.genres; }
 
-  getValidSortedBy(){ return this.sortedBy; }
+  getValidSortedBy(){ return this.sortedBys; }
 
 
-  findFirstSeries(series){ return series ? Array.isArray(series) ? series[0] : series : series; }
+  findFirstItem(items){ return items ? (Array.isArray(items) ? items[0] : items) : items; }
+  findFirstValidNumber(items : number) {
+    if(items){
+      if(Array.isArray(items)){
+        for(let item of items){
+          if(!isNaN(item)){
+            let num = Number.parseInt(item.toString());
+            return Number.isInteger(num) ? num : 0;
+          }
+        }
+      }else{
+        if(!isNaN(items)){
+          let num = Number.parseInt(items.toString());
+          return Number.isInteger(num) ? num : 0;
+        }
+      }
+    }
+
+    return 0;
+  }
+  findFirstValidNullableBoolean(items){
+    if(items){
+      if(Array.isArray(items)){
+        for(let item of items){
+          if(item === true || item === false)
+            return item;
+        }
+      }else
+        return (items === true || items === false) ? items : null;
+
+    }
+
+    return null;
+  }
+
   findFirstValidType(types){
     if(types) {
-      let validTypes =this.getValidTypes().filter(type => !type.inactive).map(type => type.code);
+      let validTypes = this.getValidTypes().filter(type => !type.inactive).map(type => type.code);
       if(Array.isArray(types)){
         for(let type of types){
-          if(validTypes.includes(type))
+          if(validTypes.includes(type)){
+            console.log(validTypes);
             return type;
+          }
         }
       }else{
         let type = types;
-        if(validTypes.includes(type))
+        if(validTypes.includes(type)){
+          console.log(type);
           return type;
+        }
       }
     }
-    return types;
+
+
+    return null;
   }
   findValidGenres(items){
     let validGenres = [];
@@ -104,9 +146,8 @@ export class SearchApiService {
           validGenres.push(genre);
     }
 
-    return validGenres;
+    return validGenres.length ? validGenres : null;
   }
-
 
   findFirstValidSortedBy(sortedBys){
     if(sortedBys) {
