@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Paginator } from 'primeng/paginator';
-import { SearchApiService } from 'src/app/shared/services/search-api.service';
+import { switchMap } from 'rxjs/operators';
+import { SearchApiService, SearchSourceEnums } from 'src/app/shared/services/search-api.service';
 import { ThreadApiService } from 'src/app/shared/services/thread-api.service';
 import { LoadingStateMachine } from 'src/app/shared/states-machine/loading-state-machine';
 
@@ -54,15 +55,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.initThreadsConfig();
     this.initSearchFootprint();
-
-
   }
 
 
   initThreadsConfig() {
-    let threadsFetchFilterConfig = {};
-    this.route.queryParams.subscribe(params => {
-      let pageable = {
+    let threadsFetchFilterConfig = { };
+    let pageable = { pageNum : null, pageSize : null };
+
+    let fetchThread = this.route.queryParams.pipe(switchMap(params => {
+      pageable = {
         pageNum: this.searchApiService.findFirstValidNumber(params['threadsPageNum']),
         pageSize: this.DEFAULT_PAGE_SIZE
       }
@@ -84,53 +85,65 @@ export class HomeComponent implements OnInit {
         fetchInterface: this.threadApiService.fetchThreadsByFilter(threadsFetchFilterConfig),
         maxRefetchCount: 3
       }
+      return this.threadsFetechMachine.fetch();
+    }))
 
-      this.threadsFetechMachine.fetch().subscribe(data => {
-        this.threadsConfig = [];
-        data.threads.map(thread => {
-          this.threadsConfig.push({
-            threadId: thread.threadId,
-            series: thread.series.name,
 
-            title: thread.title,
-            description: thread.contents.length ? thread.contents[0] : "",
-            type: thread.type.name,
-            genres: thread.series.categories.map((genre => genre.name)),
+    fetchThread.subscribe(data => {
+      this.threadsPaginatorConfig.totalElements = data.totalElements;
+      this.threadsConfig = [];
 
-            uploadedAt: new Date(thread.uploadedAt),
-            uploadedBy: thread.uploadedBy,
-            editedAt: new Date(thread.editedAt),
-            editedBy: thread.editedBy,
+      data.threads.map(thread => {
+        this.threadsConfig.push({
+          threadId: thread.threadId,
+          series: thread.series.name,
 
-            allowAudible: thread.allowAudible,
+          title: thread.title,
+          description: thread.contents.length ? thread.contents[0] : "",
+          type: thread.type.name,
+          genres: thread.series.categories.map((genre => genre.name)),
 
-            lnhUser: {
-              username: thread.lnhUser.username,
-              useremail: thread.lnhUser.useremail
-            }
-          })
+          uploadedAt: new Date(thread.uploadedAt),
+          uploadedBy: thread.uploadedBy,
+          editedAt: new Date(thread.editedAt),
+          editedBy: thread.editedBy,
+
+          allowAudible: thread.allowAudible,
+
+          lnhUser: {
+            username: thread.lnhUser.username,
+            useremail: thread.lnhUser.useremail
+          }
         })
+      })
 
-        this.threadsPaginatorConfig.pageSize = data.pageSize;
-        this.threadsPaginatorConfig.totalElements = data.totalElements;
-        console.log(pageable.pageNum >= data.totalPages ? data.totalPages -1 : pageable.pageNum)
-        console.log(this.threadsPaginatorRef.getPage());
-        console.log(this.threadsPaginatorRef.getPage() !== pageable.pageNum);
-        if(this.threadsPaginatorRef.getPage() !== pageable.pageNum)
-          setTimeout(() => this.threadsPaginatorRef.changePage(pageable.pageNum), 0);
-      });
+
+      this.searchApiService.getSearchSource().subscribe(searchSource => {
+        if(searchSource === SearchSourceEnums.INIT)
+          setTimeout(() => this.threadsPaginatorRef.changePage(pageable.pageNum > data.totalPages -1 ? 0 : pageable.pageNum), 0);
+
+
+        if(searchSource === SearchSourceEnums.PAGINATOR){
+          if(this.threadsPaginatorRef.getPage() > data.totalPages - 1)
+            setTimeout(() => this.threadsPaginatorRef.changePage(data.totalPages - 1), 0);
+        }
+
+        if(searchSource === SearchSourceEnums.FILTER)
+          setTimeout(() => this.threadsPaginatorRef.changePage(0), 0);
+
+
+      })
 
     })
-
   }
 
-  initSearchFootprint() {
 
-  }
+  initSearchFootprint() { }
 
 
   handleThreadsPaginatorChange(event){
-    console.log(event);
+    this.searchApiService.onPaginatorSearch();
+
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
@@ -185,7 +198,8 @@ export class HomeComponent implements OnInit {
   }
 
   handleSearchChange(event){
-    console.log('called')
+    this.searchApiService.onFilterSearch();
+
     let queryParams = { };
     queryParams = {...queryParams, ...{ lnhUser : null }, ...{ series : null }};
     Object.keys(event)?.forEach(key => queryParams = { ...queryParams, ...{ [key]: event[key] }})
@@ -198,27 +212,32 @@ export class HomeComponent implements OnInit {
   }
 
   handleLnhUserClick(event){
+    this.searchApiService.onFilterSearch();
+
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
         genres: null,
-        lnhUser: event
+        lnhUser: event,
+        series: null
       },
       queryParamsHandling: 'merge'
     });
   }
 
   handleSeriesClick(event){
+    this.searchApiService.onFilterSearch();
+
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {
         genres: null,
+        lnhUser: null,
         series: event
       },
       queryParamsHandling: 'merge'
     });
   }
-
 
 }
 

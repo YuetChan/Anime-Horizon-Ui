@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +73,16 @@ export class SearchApiService {
   ];
 
 
+  searchSource = new BehaviorSubject(SearchSourceEnums.INIT);
+
+
   constructor() { }
+
+
+  getSearchSource(){ return this.searchSource; }
+
+  onPaginatorSearch(){ this.searchSource.next(SearchSourceEnums.PAGINATOR); }
+  onFilterSearch(){ this.searchSource.next(SearchSourceEnums.FILTER); }
 
 
   getValidTypes() {return this.type; }
@@ -166,4 +176,9 @@ export class SearchApiService {
     return sortedBys;
   }
 
+
+}
+
+export enum SearchSourceEnums {
+  INIT, PAGINATOR, FILTER
 }

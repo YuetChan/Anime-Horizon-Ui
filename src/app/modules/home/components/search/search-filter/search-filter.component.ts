@@ -60,10 +60,7 @@ export class SearchFilterComponent implements OnInit {
   }
 
 
-  handleCheckboxCheck() {
-    console.log(this.searchFilterResult);
-    this.searchFilterResultChanged.emit(this.searchFilterResult);
-  }
+  handleCheckboxCheck() { this.searchFilterResultChanged.emit(this.searchFilterResult); }
   handleRadioClick(){ this.searchFilterResultChanged.emit(this.searchFilterResult); }
 
 }

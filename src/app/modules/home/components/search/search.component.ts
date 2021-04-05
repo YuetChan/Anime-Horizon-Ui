@@ -41,7 +41,6 @@ export class SearchComponent implements OnInit {
   }
 
   hightlightFirstValidTab(){
-
     this.route.queryParams.subscribe(params => {
       let typeWithDuplicates = [
         ...params['type'] ? (Array.isArray(params['type']) ? params['type'] : [params['type']]) : [],

@@ -19,11 +19,13 @@ export class ThreadApiService {
     private httpHeaderTemplate : HttpHeaderTemplateService) { }
 
   fetchThreadsByFilter(filterConfig : {
+    series? : string,
     lnhUser? : string, type? : string,
     allowAudible? : boolean, genres? : string[],
     pageable? : Pageable
   }) : Observable<any> {
     let params = new HttpParams();
+    params = filterConfig.series ? params.append('series', filterConfig.series) : params;
     params = filterConfig.lnhUser ? params.append('lnhUser', filterConfig.lnhUser) : params;
     params = filterConfig.type ? params.append('type', filterConfig.type) : params;
     params = filterConfig.allowAudible ? params.append('allowAudible', filterConfig.allowAudible.toString()) : params;
