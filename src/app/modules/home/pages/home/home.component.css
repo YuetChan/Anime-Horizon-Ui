@@ -5,6 +5,8 @@
   overflow-x: hidden;
   margin-left: 25px;
   margin-right: 25px;
+
+  /* margin-top: 45px; */
 }
 
 .left-panel{
@@ -12,11 +14,10 @@
   background-color: #ffffff;
 
   overflow-y: scroll;
-  margin-top: 55px;
 
-  width: 35%;
-  min-width: 400px;
-  height: calc(100vh - 58px);
+  /* width: 35%; */
+  width: 700px;
+  height: calc(100vh);
 }
 
 .right-panel{
@@ -25,26 +26,22 @@
 
   overflow-x: hidden;
   overflow-y: scroll;
-  margin-top: 55px;
 
-  width: 65%;
-  height: calc(100vh - 58px);
+  /* width: 65%; */
+  height: calc(100vh);
 }
 
-.banner-app{
-  position: fixed;
-  top: 0px;
-  left: 25px;
-  z-index: 999;
 
-  width: calc(100% - 50px);
+.search-bar-container{
+  height: 60px;
+  background-color: #ffffff;
 }
 
 .search-container{
   background-color: #ffffff;
 
+  padding-left: 12px;
   padding-bottom: 5px;
-  margin-left: 25px;
   margin-right: 25px;
   margin-top: 0px;
   margin-bottom: 5px;
@@ -53,19 +50,31 @@
 .threads-container{
   background-color: #ffffff;
 
-  margin: 25px;
+  /* margin: 25px;
+  margin-left: 22px; */
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
 .thread-container{
-  margin-bottom: 16px;
+  padding-bottom: 15px;
+  padding-top: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-bottom: 1px solid rgba(196, 196, 196, 0.7);
+  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1); */
 }
 
 .thread-container:last-child{
   border-bottom: 0px solid rgba(196, 196, 196, 0.7);
 }
+
+.thread-container:hover{
+  border: 2px solid rgba(247, 137, 47, 0.7);
+}
+
+
 
 .sort-by-div{
   text-align: right;
@@ -79,7 +88,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 800px) {
+/* @media only screen and (max-width: 800px) {
 
   .banner-app{
     width: 100%;
@@ -100,7 +109,7 @@
 
   }
 
-}
+} */
 
 .contents-paginator-container {
   position: -webkit-sticky;
@@ -115,12 +124,12 @@
 }
 
 .threads-paginator-container {
-  position: -webkit-sticky;
+  /* position: -webkit-sticky;
   position: sticky;
-  bottom: 0px;
+  bottom: 0px; */
 
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 20px;
+  margin-right: 20px; */
   border-top: 1px solid rgba(196, 196, 196, 0.7);
 
   background-color: #ffffff;

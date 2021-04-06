@@ -42,6 +42,11 @@ export class SearchApiService {
     }
   ]
   type = [{
+    name : 'All',
+    code : 'ALL',
+    inactive : false,
+    default : false
+  },{
     name : 'Novel',
     code : 'NOVEL',
     inactive : false,
@@ -58,7 +63,8 @@ export class SearchApiService {
     code : 'DISCUSS',
     inactive : true,
     default : false
-  }];
+  },
+  ];
 
   sortedBys = [
     {

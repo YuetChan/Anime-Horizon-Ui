@@ -1,3 +1,5 @@
+
+
 <div class="search-div">
     <ul fxLayout="row wrap" fxLayoutAlign="start center">
       <a  *ngFor="let tab of tabsConfig"
@@ -6,33 +8,20 @@
           href="javascript:void(0);">
           <li class="options-li">
             <i [class]="tab.class"></i>
-            &nbsp;&nbsp;<b>{{tab.name}}</b>
+            &nbsp;<b>{{tab.name}}</b>
           </li>
       </a>
-
-      <!-- <a [className]="tabConfig.novel === 'active' ? 'tab-active' : 'tab-inactive'"
-          (click)="handleTabClick('novel')"
-          href="javascript:void(0);">
-          <li class="options-li">
-            <i class="pi pi-pencil"></i>
-            &nbsp;&nbsp;<b>Novel</b>
-          </li>
-      </a>
-      <a [className]="tabConfig.audible === 'active' ? 'tab-active' : 'tab-inactive'"
-          (click)="handleTabClick('audible')"
-          href="javascript:void(0);">
-          <li class="options-li"><i class="pi pi-volume-up"></i>
-            &nbsp;&nbsp;<b>Audible</b>
-          </li>
-      </a> -->
+      <!-- <div fxLayout="row" fxLayoutAlign="end center">
+        <a href="javascript:void(0);" class="filter-by-li" (click)="handleFilterByClick()">
+          <i class="pi pi-sliders-h"></i>&nbsp;&nbsp;Filter by&nbsp;&nbsp;
+        </a>
+      </div> -->
     </ul>
+
 </div>
-<div fxLayout="row" fxLayoutAlign="end center">
-  <a href="javascript:void(0);" class="filter-by-li" (click)="handleFilterByClick()">
-    <i class="pi pi-sliders-h"></i>&nbsp;&nbsp;Filter by&nbsp;&nbsp;
-  </a>
-</div>
+
 <div class="search-filter-div"  *ngIf="showSearchFilter">
   <app-search-filter (searchFilterResultChanged)="handleSearchFilterChange($event)"></app-search-filter>
 </div>
+
 

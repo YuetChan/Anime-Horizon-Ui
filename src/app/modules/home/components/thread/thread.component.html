@@ -1,23 +1,25 @@
-<div fxLayout="column" fxLayoutGap="10px">
-  <a href="#" class=""><h3>{{threadConfig.title}}</h3></a>
-  <p class="thread-description-p">{{threadConfig.description | randomTextTruncate : 120 : 25}}</p>
+<div fxLayout="column" fxLayoutGap="15px">
+  <div fxLayout="column" fxLayoutGap="10px">
+    <a href="#" class=""><h4>{{threadConfig.title}}</h4></a>
+    <p class="thread-description-p">{{"Having recently become tutor to the hot-headed young Eris, Rudy is elated to be deemed worthy by the eccentric side of his family. But the Boreas household seems to have more than a few dark secrets, and" | randomTextTruncate : 100 : 25}}</p>
+  </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
-    <div fxFlex="60">
+  <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px">
+    <div>
       <a  href="javascript:void(0);"
           (click)="handleSeriesClick(threadConfig.series)"
           class="thread-series-a">
           Series: <b>{{threadConfig.series}}</b>
       </a>
-      <br>
+      <!-- <br>
       <p-tag
           *ngIf="this.threadConfig.allowAudible"
           value="Allow Audible"
           severity="warning"
           [style]="{'font-family': 'Arial, Helvetica, sans-serif', 'margin-top':'8px', 'margin-bottom':'8px'}">
-      </p-tag>
+      </p-tag> -->
     </div>
-    <p class="thread-creator-p" fxFlex="40">
+    <p class="thread-creator-p">
       <a  href="javascript:void(0);"
           (click)="handleLnhUserClick(threadConfig.lnhUser.useremail)"
           class="thread-creator-a">
@@ -25,8 +27,7 @@
       </a>
       <br>
       <span class="update-time-ago-span">
-        <i>Updated at<br>
-        {{threadConfig.editedAt | piTimeAgo }} </i>
+        <i>Updated at {{threadConfig.editedAt | piTimeAgo }} </i>
       </span>
     </p>
   </div>

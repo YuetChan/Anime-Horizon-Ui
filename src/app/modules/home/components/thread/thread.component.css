@@ -3,27 +3,39 @@
 .thread-description-p{
   margin: 0px;
   font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgba(48, 48, 48, 0.8)
 }
 
 .thread-creator-a{
+  color: rgb(48, 48, 48,0.8);
+  font-size: 14px;
+}
+
+.thread-creator-a b{
   color: rgb(48, 48, 48);
   font-size: 14px;
 }
 
 .thread-series-a{
+  color: rgb(48, 48, 48, 0.8);
+  font-size: 14px;
+}
+
+.thread-series-a b{
   color: rgb(48, 48, 48);
   font-size: 14px;
 }
 
 .thread-creator-p{
-  text-align: right;
+  text-align: left;
   margin-top: 0px;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
 }
 
-.update-time-ago-span{ font-size: 12px; }
+.update-time-ago-span{ font-size: 12px;   color: rgb(48, 48, 48, 0.8);}
 
-h3{
+h4{
   color: rgb(48, 48, 48);
   margin: 0px
 }

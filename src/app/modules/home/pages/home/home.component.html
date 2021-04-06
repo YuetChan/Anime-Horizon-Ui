@@ -1,7 +1,10 @@
 <div class="main-panel">
-  <app-banner class="banner-app"></app-banner>
+
   <div fxLayout="row" fxLayoutAlign="start start">
     <div class="left-panel">
+      <!-- <h2>
+        Discover
+      </h2> -->
       <div class="search-container">
         <app-search (searchResultChanged)="handleSearchChange($event)"></app-search>
       </div>
@@ -27,6 +30,7 @@
       </div>
     </div>
     <div class="right-panel">
+      <app-banner class="banner-app"></app-banner>
       <app-content></app-content>
       <div class="contents-paginator-container">
         <p-paginator
