@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
               private searchApiService : SearchApiService) { }
   ngOnInit(): void {
     this.initThreadsConfig();
+
     this.initSearchFootprint();
   }
 

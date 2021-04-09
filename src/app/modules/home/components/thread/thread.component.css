@@ -2,9 +2,13 @@
 
 .thread-description-p{
   margin: 0px;
+
   font-size: 14px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgba(48, 48, 48, 0.8)
+  color: rgb(48, 48, 48, 0.8);
+}
+
+p{
+  line-height: 20px;
 }
 
 .thread-creator-a{
@@ -12,8 +16,8 @@
   font-size: 14px;
 }
 
-.thread-creator-a b{
-  color: rgb(48, 48, 48);
+.thread-creator-a span{
+  color: rgb(0,140,226);
   font-size: 14px;
 }
 
@@ -22,8 +26,8 @@
   font-size: 14px;
 }
 
-.thread-series-a b{
-  color: rgb(48, 48, 48);
+.thread-series-a span{
+  color: rgb(0,140,226);
   font-size: 14px;
 }
 
@@ -36,13 +40,10 @@
 .update-time-ago-span{ font-size: 12px;   color: rgb(48, 48, 48, 0.8);}
 
 h4{
-  color: rgb(48, 48, 48);
-  margin: 0px
-}
+  color: rgb(48, 48, 48, 0.9);
 
-p{
-  color: rgb(31,31,30);
-  margin-top: 5px;
+  margin: 0px;
+  margin-left: -1px
 }
 
 a{ text-decoration: none; }

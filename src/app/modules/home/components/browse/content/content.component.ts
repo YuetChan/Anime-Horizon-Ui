@@ -12,6 +12,18 @@ export class ContentComponent implements OnInit {
     this._innerHtml = this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
+  @Input() contentConfig : {
+    series?: string,
+    title?: string,
+    contents?: []
+
+    lnhUser?: {
+      useremail: string,
+      username: string
+    }
+    editedAt?: Date,
+  } = {}
+
   _innerHtml : SafeHtml = "";
 
   constructor(private sanitizer : DomSanitizer) { }

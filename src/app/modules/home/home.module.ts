@@ -28,6 +28,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { ContentMetaComponent } from './components/browse/content/content-meta/content-meta.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     ContentComponent,
     ContentFormDialogComponent,
     ContentEmptyComponent,
+    ContentMetaComponent,
   ],
   imports: [
     HomeRoutingModule,

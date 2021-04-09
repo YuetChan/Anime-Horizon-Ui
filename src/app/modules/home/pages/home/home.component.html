@@ -1,22 +1,27 @@
 <div class="main-panel">
-
+  <app-banner></app-banner>
   <div fxLayout="row" fxLayoutAlign="start start">
     <div class="left-panel">
-      <!-- <h2>
-        Discover
-      </h2> -->
-      <div class="search-container">
-        <app-search (searchResultChanged)="handleSearchChange($event)"></app-search>
-      </div>
-      <div class="threads-container">
-        <div class="thread-container" *ngFor="let threadConfig of threadsConfig">
-          <app-thread
-              [threadConfig]="threadConfig"
-              (lnhUserClick)="handleLnhUserClick($event)"
-              (seriesClick)="handleSeriesClick($event)">
-          </app-thread>
+
+      <div class="discover-panel">
+        <h2 class="threads-header">
+          DISCOVER
+        </h2>
+        <div class="search-container">
+          <app-search (searchResultChanged)="handleSearchChange($event)"></app-search>
+        </div>
+
+        <div class="threads-container">
+          <div class="thread-container" *ngFor="let threadConfig of threadsConfig">
+            <app-thread
+                [threadConfig]="threadConfig"
+                (lnhUserClick)="handleLnhUserClick($event)"
+                (seriesClick)="handleSeriesClick($event)">
+            </app-thread>
+          </div>
         </div>
       </div>
+
       <div class="threads-paginator-container">
         <p-paginator
             #threadsPaginator
@@ -26,11 +31,9 @@
             [showJumpToPageDropdown]="true"
             [showPageLinks]="false">
         </p-paginator>
-        <br>
       </div>
     </div>
     <div class="right-panel">
-      <app-banner class="banner-app"></app-banner>
       <app-content></app-content>
       <div class="contents-paginator-container">
         <p-paginator

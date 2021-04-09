@@ -42,26 +42,27 @@ export class SearchApiService {
     }
   ]
   type = [{
-    name : 'All',
+    name : 'ALL',
     code : 'ALL',
     inactive : false,
-    default : false
+    default : false,
+    class: 'pi pi-cloud'
   },{
-    name : 'Novel',
+    name : 'NOVEL',
     code : 'NOVEL',
     inactive : false,
     default : true,
     class : 'pi pi-pencil'
   },{
-    name : 'Audible',
+    name : 'AUDIBLE',
     code : 'AUDIBLE',
     inactive : false,
     default : false,
     class : 'pi pi-volume-up'
   },{
-    name : 'Discuss',
+    name : 'DISCUSS',
     code : 'DISCUSS',
-    inactive : true,
+    inactive : false,
     default : false
   },
   ];

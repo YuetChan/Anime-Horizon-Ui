@@ -1,13 +1,3 @@
-.content-div{
-  padding-top: 15px;
-  /* padding-left: 30px;
-  padding-right: 30px; */
-  margin-left: 30px;
-  margin-right: 30px;
-
-  background-color: #ffffff;
-}
-
 .thread-creator-a{
   color: rgb(48, 48, 48);
   font-size: 14px;
@@ -46,10 +36,22 @@ li {
   color: #303030;
 }
 
-.options-li i{
-  background: -webkit-linear-gradient(326deg,#ff4800 0%, #f7892f 74%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 
-  font-size: 13px;
+p{
+  line-height: 28px;
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: rgb(48, 48, 48, 0.9);
 }
+
+.content-text-container{
+  overflow-y: scroll;
+  height: calc(100vh - 175.7px);
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+
+
+

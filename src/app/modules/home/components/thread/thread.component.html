@@ -3,32 +3,24 @@
     <a href="#" class=""><h4>{{threadConfig.title}}</h4></a>
     <p class="thread-description-p">{{"Having recently become tutor to the hot-headed young Eris, Rudy is elated to be deemed worthy by the eccentric side of his family. But the Boreas household seems to have more than a few dark secrets, and" | randomTextTruncate : 100 : 25}}</p>
   </div>
-
-  <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px">
+  <div fxLayout="column" fxLayoutAlign="start start">
     <div>
       <a  href="javascript:void(0);"
           (click)="handleSeriesClick(threadConfig.series)"
           class="thread-series-a">
-          Series: <b>{{threadConfig.series}}</b>
+          Series: <span>{{threadConfig.series}}</span>
       </a>
-      <!-- <br>
-      <p-tag
-          *ngIf="this.threadConfig.allowAudible"
-          value="Allow Audible"
-          severity="warning"
-          [style]="{'font-family': 'Arial, Helvetica, sans-serif', 'margin-top':'8px', 'margin-bottom':'8px'}">
-      </p-tag> -->
     </div>
-    <p class="thread-creator-p">
+    <div class="thread-meta-container">
       <a  href="javascript:void(0);"
           (click)="handleLnhUserClick(threadConfig.lnhUser.useremail)"
           class="thread-creator-a">
-          By: <b>{{threadConfig.lnhUser.username}}</b>
+          By: <span>{{threadConfig.lnhUser.username}}</span>
       </a>
       <br>
       <span class="update-time-ago-span">
         <i>Updated at {{threadConfig.editedAt | piTimeAgo }} </i>
       </span>
-    </p>
+    </div>
   </div>
 </div>
