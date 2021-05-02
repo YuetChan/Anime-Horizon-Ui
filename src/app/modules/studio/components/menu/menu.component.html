@@ -1,0 +1,48 @@
+<div fxLayout="column" fxLayoutGap="10px">
+  <div class="avatar-img" fxLayout="column" fxLayoutGap="4px">
+    <div class="update-time-ago">
+      <span>/User&nbsp;&nbsp;</span><i>Updated at Mar 20 '21 at 10:12: PM</i>
+    </div>
+    <p-avatar
+        image="http://tinygraphs.com/squares/tinygraphs?theme=frogideas&numcolors=4&size=220&fmt=svg"
+        styleClass="p-mr-2"
+        [style]="{'width' : '120px', 'height' : '120px'}"
+        shape="circle">
+    </p-avatar>
+  </div>
+  <div class="avatar-description-container">
+    <div fxLayout="row" fxLayoutAlign="space-between start" class="avatar-meta">
+      <div>
+        <div><b>Yuet Chany</b></div>
+        <div><small>@yuetchany</small></div>
+      </div>
+
+      <button
+          style="padding: 10px;
+                 height: 34px; width: 100px;
+                 border-radius: 18px;
+                 color:rgb(73,154,141);
+                 font-family: 'Open Sans', sans-serif;
+                 font-size: 16px;"
+          pButton pRipple type="button"
+          label="Edit"
+          class="p-button-outlined">
+      </button>
+    </div>
+
+    <div class="avatar-description">
+      I am Yuet Chany. I write Sci Fi and Comedy. I am also a crypto trader.
+    </div>
+    <ul class="avatar-links">
+      <li>
+        <div class="avatar-link"><i class="pi pi-link"></i>&nbsp;<a href="#" style="color: rgb(0,140,226);"><small>yuetchany.com</small></a></div>
+      </li>
+      <li>
+        <div class="avatar-link"><i class="pi pi-calendar"></i>&nbsp;<small>Joined March 2021</small></div>
+      </li>
+    </ul>
+  </div>
+  <app-eb-vertical-menu [items]="items"></app-eb-vertical-menu>
+</div>
+
+

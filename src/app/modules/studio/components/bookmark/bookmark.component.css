@@ -1,0 +1,21 @@
+:host ::ng-deep .p-datatable.p-component.p-datatable-scrollable{
+  min-width: 700px;
+}
+
+:host ::ng-deep .p-datatable-scrollable-header-box{
+  padding-right: 0px !important;
+}
+
+tr {
+  font-size: 15px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+td {
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+:host ::ng-deep .p-paginator.p-component{
+  justify-content: flex-end;
+}
