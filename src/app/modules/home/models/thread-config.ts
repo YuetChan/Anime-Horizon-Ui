@@ -5,8 +5,10 @@ export interface ThreadConfig {
 
   title : string;
   description : string;
-  genres: string[];
   type: string;
+  genres: string[];
+
+  avgRating: number;
 
   lnhUser : {
     userId : number,

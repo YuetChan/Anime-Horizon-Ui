@@ -20,19 +20,20 @@ export class ThreadApiService {
 
   fetchThreadsByFilter(filterConfig : {
     series? : string,
-    lnhUser? : string, type? : string,
+    lnhUser? : string, type? : string[],
     allowAudible? : boolean, genres? : string[],
     pageable? : Pageable
   }) : Observable<any> {
     let params = new HttpParams();
     params = filterConfig.series ? params.append('series', filterConfig.series) : params;
     params = filterConfig.lnhUser ? params.append('lnhUser', filterConfig.lnhUser) : params;
-    params = filterConfig.type ? params.append('type', filterConfig.type) : params;
+    filterConfig.type?.forEach(type => params = params.append('type', type))
     params = filterConfig.allowAudible ? params.append('allowAudible', filterConfig.allowAudible.toString()) : params;
     filterConfig.genres?.forEach(genre => params = params.append('genres', genre));
     params = filterConfig.pageable ? params.append('pageNum', filterConfig.pageable.pageNum.toString()).append('pageSize', filterConfig.pageable.pageSize.toString()) : params;
 
 
+    console.log(params);
     return this.httpClient.get(this.domainURL + this.postURL, {
       headers : this.httpHeaderTemplate.getHeadersForJsonRes(),
       params : params

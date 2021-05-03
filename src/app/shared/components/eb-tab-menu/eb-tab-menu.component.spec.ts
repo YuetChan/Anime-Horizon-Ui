@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContentEmptyComponent } from './content-empty.component';
+import { EbTabMenuComponent } from './eb-tab-menu.component';
 
-describe('ContentEmptyComponent', () => {
-  let component: ContentEmptyComponent;
-  let fixture: ComponentFixture<ContentEmptyComponent>;
+describe('EbTabMenuComponent', () => {
+  let component: EbTabMenuComponent;
+  let fixture: ComponentFixture<EbTabMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContentEmptyComponent ]
+      declarations: [ EbTabMenuComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContentEmptyComponent);
+    fixture = TestBed.createComponent(EbTabMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

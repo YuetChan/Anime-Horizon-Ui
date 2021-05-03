@@ -7,16 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentEditComponent implements OnInit {
 
-  items = [
+  tabs = [
     {label: 'Novel', icon: ''},
     // {label: 'Audible', icon: ''}
   ]
+  activeTab = this.tabs[0];
 
   section = 'Content edit'
   lastUpdatedAt = "'Updated at Mar 20 '21 at 10:12: PM'";
 
   tableConfigs = [];
 
+  createContentDialogVisible = false;
+  editContentDialogVisible = false;
+
+  dialogHeader = "";
 
 
   constructor() { }
@@ -32,6 +37,27 @@ export class ContentEditComponent implements OnInit {
 
   handleContentsPaginatorChange(event){
 
+  }
+
+  handleCreateContentClick(){
+    if(!this.createContentDialogVisible && !this.editContentDialogVisible){
+      console.log("called");
+      this.dialogHeader = "Create content";
+      this.createContentDialogVisible = true;
+    }
+
+  }
+
+  handleEditContentClick(){
+    if(!this.createContentDialogVisible && !this.editContentDialogVisible){
+      this.dialogHeader = "Edit content";
+      this.editContentDialogVisible = true;
+    }
+  }
+
+  handleDialogClose(){
+    this.createContentDialogVisible = false;
+    this.editContentDialogVisible = false;
   }
 
 }

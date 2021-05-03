@@ -8,13 +8,15 @@ import { SearchApiService } from 'src/app/shared/services/search-api.service';
 })
 export class SearchFilterComponent implements OnInit {
 
-  @Output() searchFilterResultChanged : EventEmitter<{sortedBy : string, genres: string[]}> = new EventEmitter();
+  @Output() searchFilterResultChanged : EventEmitter<{type: string[], genres: string[], sortedBy : string }> = new EventEmitter();
 
   searchFilterResult = {
+    type: [],
     sortedBy : null,
     genres : []
   }
   searchFilterConfig = {
+    types: [],
     sortedBys : [],
     genres : []
   }
@@ -25,6 +27,14 @@ export class SearchFilterComponent implements OnInit {
     this.initDefaultSearchFilterConfigAndResult()
 
     this.route.queryParams.subscribe(params => {
+      let typeWithDuplicates = [
+        ...[],
+        ...(params['type'] ? (Array.isArray(params['type']) ? params['type'] : [params['type']]) : [])];
+
+      let typeWithoutDuplicates = typeWithDuplicates.filter((n, i) => typeWithDuplicates.indexOf(n) === i);
+      this.searchFilterResult.type = this.searchApiService.findValidTypes(typeWithoutDuplicates);
+
+
       let genresWithDuplicates = [
         ...[],
         ...(params['genres'] ? (Array.isArray(params['genres']) ? params['genres'] : [params['genres']]) : [])];
@@ -49,18 +59,18 @@ export class SearchFilterComponent implements OnInit {
 
   initDefaultSearchFilterConfigAndResult(){
     this.searchFilterConfig = {
-      sortedBys : this.searchApiService.getValidSortedBy(),
+      types: this.searchApiService.getValidTypes(),
+      sortedBys : this.searchApiService.getValidSortedBys(),
       genres : this.searchApiService.getValidGenres()
     }
 
     this.searchFilterResult = {
+      type: [],
       sortedBy : this.searchFilterConfig.sortedBys[0].code,
       genres : []
     }
   }
 
-
-  handleCheckboxCheck() { this.searchFilterResultChanged.emit(this.searchFilterResult); }
-  handleRadioClick(){ this.searchFilterResultChanged.emit(this.searchFilterResult); }
+  handleSearchFilterChange() { this.searchFilterResultChanged.emit(this.searchFilterResult); }
 
 }

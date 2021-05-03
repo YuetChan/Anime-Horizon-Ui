@@ -8,5 +8,8 @@
 
 body{
   margin: 0px;
-  background-color: #e4e0e0;
+  background-color: rgb(20,24,30);
+
+  overflow-y: hidden;
+
 }

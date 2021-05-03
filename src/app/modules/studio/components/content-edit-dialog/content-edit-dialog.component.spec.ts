@@ -1,19 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BannerComponent } from './banner.component';
 
-describe('BannerComponent', () => {
-  let component: BannerComponent;
-  let fixture: ComponentFixture<BannerComponent>;
+import { ContentEditDialogComponent } from './content-edit-dialog.component';
+
+describe('ContentEditDialogComponent', () => {
+  let component: ContentEditDialogComponent;
+  let fixture: ComponentFixture<ContentEditDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BannerComponent ]
+      declarations: [ ContentEditDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BannerComponent);
+    fixture = TestBed.createComponent(ContentEditDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

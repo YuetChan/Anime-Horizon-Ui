@@ -13,6 +13,8 @@ export class ThreadComponent implements OnInit {
   @Output() lnhUserClick : EventEmitter<string> = new EventEmitter();
   @Input() threadConfig : ThreadConfig;
 
+  val = 5;
+
   constructor() { }
   ngOnInit(): void { }
 

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentMetaComponent implements OnInit {
 
+  val = 5;
+
   constructor() { }
 
   ngOnInit(): void {

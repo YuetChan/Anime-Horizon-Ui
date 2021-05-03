@@ -1,4 +1,24 @@
 <div>
+
+  <ul>
+    <li>
+      <b>Type:</b>
+    </li>
+    <li>
+      <ul class="genres-list"
+          fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
+        <li *ngFor="let type of searchFilterConfig.types">
+          <p-checkbox
+              [value]="type.code"
+              [label]="type.name"
+              [(ngModel)]="searchFilterResult.type"
+              (onChange)="handleSearchFilterChange()">
+          </p-checkbox>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
   <ul>
     <li>
       <b>Genres:</b>
@@ -11,28 +31,31 @@
               [value]="genre.code"
               [label]="genre.name"
               [(ngModel)]="searchFilterResult.genres"
-              (onChange)="handleCheckboxCheck($event)">
+              (onChange)="handleSearchFilterChange()">
           </p-checkbox>
         </li>
       </ul>
     </li>
   </ul>
 
-  <ul>
-    <li>
-      <b>Sort by:</b>
-    </li>
-    <li *ngFor="let sortedBy of searchFilterConfig.sortedBys">
-      <div class="p-field-radiobutton">
-        <p-radioButton
-            [name]="sortedBy.code" [value]="sortedBy.code" [inputId]="sortedBy.code"
-            [(ngModel)]="searchFilterResult.sortedBy"
-            (onClick)="handleRadioClick()">
-        </p-radioButton>
-        <label>&nbsp;&nbsp;{{sortedBy.name}}</label>
-      </div>
-    </li>
-  </ul>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="80px">
+    <ul>
+      <li>
+        <b>Sort by:</b>
+      </li>
+      <li *ngFor="let sortedBy of searchFilterConfig.sortedBys">
+        <div class="p-field-radiobutton">
+          <p-radioButton
+              [name]="sortedBy.code" [value]="sortedBy.code" [inputId]="sortedBy.code"
+              [(ngModel)]="searchFilterResult.sortedBy"
+              (onClick)="handleSearchFilterChange()">
+          </p-radioButton>
+          <label>&nbsp;&nbsp;{{sortedBy.name}}</label>
+        </div>
+      </li>
+    </ul>
+  </div>
+
 </div>
 
 

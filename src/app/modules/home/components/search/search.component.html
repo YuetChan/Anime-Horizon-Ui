@@ -1,24 +1,34 @@
-<div class="search-div">
-  <ul fxLayout="row wrap" fxLayoutAlign="start center">
-    <li *ngFor="let tab of tabsConfig">
-      <a  [className]="tab.code === tabResult ? 'tab-active' : 'tab-inactive'"
-          (click)="handleTabClick(tab.code)"
-          href="javascript:void(0);">
-        <b>{{tab.name}}</b>
-      </a>
-    </li>
-  </ul>
-  <br>
-  <div fxLayout="row" fxLayoutAlign="start center">
-    <a href="javascript:void(0);" class="filter-by-li" >
-      <i class="pi pi-sliders-h"></i>&nbsp;&nbsp;Filter By
-    </a>
+<div class="search-container" >
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+      <img src="https://i.ibb.co/xmjv9Fg/evening-brew-1.png" style="height: 33px; width: 100px;">
+      <app-search-bar></app-search-bar>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+      <button
+          style="padding: 0px; color: #ffffff;"
+          pButton pRipple
+          type="button"
+          icon="pi pi-sliders-h"
+          class="p-button-raised p-button-text"
+          (click)="handleFilterByClick($event)">
+      </button>
+      <button
+          style="padding: 0px; color: #ffffff;"
+          pButton pRipple type="button"
+          icon="pi pi-bars"
+          class="p-button-raised p-button-text">
+      </button>
+    </div>
   </div>
+
 </div>
 
 
-<div class="search-filter-div"  *ngIf="showSearchFilter">
-  <app-search-filter (searchFilterResultChanged)="handleSearchFilterChange($event)"></app-search-filter>
-</div>
+
+
+
+
 
 

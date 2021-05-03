@@ -6,61 +6,91 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SearchApiService {
 
-  genres = [
-    {
-      name : 'Fantasy',
-      code : 'FANTASY',
-      inactive : false
-    },{
-      name : 'Comedy',
-      code : 'COMEDY',
+  genres = [{
+      name : 'Action',
+      code : 'ACTION',
       inactive : false
     },{
       name : 'Adventure',
       code : 'ADVENTURE',
       inactive : false
     },{
-      name : 'Romance ',
-      code : 'ROMANCE',
+      name : 'Comedy',
+      code : 'COMEDY',
       inactive : false
     },{
-      name : 'Non Human ',
-      code : 'NON_HUMAN',
+      name : 'Cyberpunk',
+      code : 'CYBERPUNK',
+      inactive : false
+    },{
+      name : 'Drama',
+      code : 'DRAMA',
+      inactive : false
+
+    },{
+      name : 'Ecchi',
+      code : 'ECCHI',
+      inactive : false
+    },{
+      name : 'Fantasy',
+      code : 'FANTASY',
+      inactive : false
+    },{
+      name : 'Harem',
+      code : 'HAREM',
+      inactive : false
+    },{
+      name : 'Historical',
+      code : 'HISTORICAL',
+      inactive : false
+    },{
+      name : 'Horror',
+      code : 'HORROR',
       inactive : false
     },{
       name : 'Isekai',
       code : 'ISEKAI',
       inactive : false
     },{
-      name : 'Action',
-      code : 'ACTION',
+      name : 'Mystery',
+      code : 'MYSTERY',
+      inactive : false
+    },{
+      name : 'Psychological',
+      code : 'PSYCHOLOGICAL',
+      inactive : false
+    }, {
+      name : 'Romance ',
+      code : 'ROMANCE',
       inactive : false
     },{
       name : 'School Life',
       code : 'SCHOOL_LIFE',
       inactive : false
+    },{
+      name : 'Sci Fi',
+      code : 'SCI_FI',
+      inactive : false
+    },{
+      name : 'Sport',
+      code : 'SPORT',
+      inactive : false
     }
   ]
   type = [{
-    name : 'ALL',
-    code : 'ALL',
-    inactive : false,
-    default : false,
-    class: 'pi pi-cloud'
-  },{
-    name : 'NOVEL',
+    name : 'Novel',
     code : 'NOVEL',
     inactive : false,
     default : true,
     class : 'pi pi-pencil'
   },{
-    name : 'AUDIBLE',
+    name : 'Audible',
     code : 'AUDIBLE',
     inactive : false,
     default : false,
     class : 'pi pi-volume-up'
   },{
-    name : 'DISCUSS',
+    name : 'Discuss',
     code : 'DISCUSS',
     inactive : false,
     default : false
@@ -79,7 +109,6 @@ export class SearchApiService {
     }
   ];
 
-
   searchSource = new BehaviorSubject(SearchSourceEnums.INIT);
 
 
@@ -95,7 +124,7 @@ export class SearchApiService {
   getValidTypes() {return this.type; }
   getValidGenres(){ return this.genres; }
 
-  getValidSortedBy(){ return this.sortedBys; }
+  getValidSortedBys(){ return this.sortedBys; }
 
 
   findFirstItem(items){ return items ? (Array.isArray(items) ? items[0] : items) : items; }
@@ -133,28 +162,20 @@ export class SearchApiService {
     return null;
   }
 
-  findFirstValidType(types){
-    if(types) {
-      let validTypes = this.getValidTypes().filter(type => !type.inactive).map(type => type.code);
-      if(Array.isArray(types)){
-        for(let type of types){
-          if(validTypes.includes(type)){
-            console.log(validTypes);
-            return type;
-          }
-        }
-      }else{
-        let type = types;
-        if(validTypes.includes(type)){
-          console.log(type);
-          return type;
-        }
-      }
+  findValidTypes(items){
+    console.log(items)
+    let validTypes = [];
+    for(let item of items){
+      for(let type of this.getValidTypes().filter(type => !type.inactive).map(type => type.code))
+        if(item === type)
+          validTypes.push(type);
     }
 
 
-    return null;
+    console.log(validTypes);
+    return validTypes.length ? validTypes : null;
   }
+
   findValidGenres(items){
     let validGenres = [];
     for(let item of items){
@@ -168,7 +189,7 @@ export class SearchApiService {
 
   findFirstValidSortedBy(sortedBys){
     if(sortedBys) {
-      let validSortedBys = this.getValidSortedBy().filter(type => !type.inactive).map(type => type.code);
+      let validSortedBys = this.getValidSortedBys().filter(type => !type.inactive).map(type => type.code);
       if(Array.isArray(sortedBys)){
         for(let sortedBy of sortedBys){
           if(validSortedBys.includes(sortedBy))

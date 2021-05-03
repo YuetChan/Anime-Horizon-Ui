@@ -1,50 +1,64 @@
-.thread-title-div{ padding-right: 20px; }
+a{ text-decoration: none; }
 
-.thread-description-p{
+p.thread-description{
   margin: 0px;
 
   font-size: 14px;
   color: rgb(48, 48, 48, 0.8);
-}
-
-p{
   line-height: 20px;
 }
 
-.thread-creator-a{
+.thread-creator a{
   color: rgb(48, 48, 48,0.8);
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
-.thread-creator-a span{
+.thread-creator span{
   color: rgb(0,140,226);
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
-.thread-series-a{
+.thread-series a{
   color: rgb(48, 48, 48, 0.8);
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
-.thread-series-a span{
+.thread-series span{
   color: rgb(0,140,226);
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
-.thread-creator-p{
+.thread-creator{
   text-align: left;
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
-.update-time-ago-span{ font-size: 12px;   color: rgb(48, 48, 48, 0.8);}
+.update-time-ago i{
+  margin-top: 7px;
 
-h4{
-  color: rgb(48, 48, 48, 0.9);
-
-  margin: 0px;
-  margin-left: -1px
+  font-size: 10px;
+  color: rgb(48, 48, 48, 0.8);
+}
+.update-time-ago span{
+  font-size: 12px;
+  color: rgb(0,0,0);
 }
 
-a{ text-decoration: none; }
+a.thread-title{
+  font-size: 16px;
+  color: rgb(48, 48, 48);
+  text-decoration: none;
+
+  margin: 0px;
+}
+
+.thread-meta-icon{
+  color: rgb(48, 48, 48, 0.8);
+  padding-top: 6px;
+}
+
+.thread-meta{
+  font-size: 12px;
+}
 

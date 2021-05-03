@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SectionHeaderComponent implements OnInit {
 
-  @Input() items = [{label: '', icon: ''}]
+  @Input() tabs = [{label: '', icon: ''}]
+  @Input() activeTab = {};
 
   @Input() section = ''
   @Input() lastUpdatedAt = '';

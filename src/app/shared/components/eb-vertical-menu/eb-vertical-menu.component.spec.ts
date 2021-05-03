@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContentEditorComponent } from './content-editor.component';
+import { EbVerticalMenuComponent } from './eb-vertical-menu.component';
 
-describe('ContentEditorComponent', () => {
-  let component: ContentEditorComponent;
-  let fixture: ComponentFixture<ContentEditorComponent>;
+describe('EbVerticalMenuComponent', () => {
+  let component: EbVerticalMenuComponent;
+  let fixture: ComponentFixture<EbVerticalMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContentEditorComponent ]
+      declarations: [ EbVerticalMenuComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContentEditorComponent);
+    fixture = TestBed.createComponent(EbVerticalMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

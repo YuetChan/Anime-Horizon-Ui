@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContentFormDialogComponent } from './content-form-dialog.component';
+import { StudioComponent } from './studio.component';
 
-describe('ContentFormDialogComponent', () => {
-  let component: ContentFormDialogComponent;
-  let fixture: ComponentFixture<ContentFormDialogComponent>;
+describe('StudioComponent', () => {
+  let component: StudioComponent;
+  let fixture: ComponentFixture<StudioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContentFormDialogComponent ]
+      declarations: [ StudioComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContentFormDialogComponent);
+    fixture = TestBed.createComponent(StudioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

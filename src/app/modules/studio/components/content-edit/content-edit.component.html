@@ -1,5 +1,6 @@
 <app-section-header
-    [items]="items"
+    [tabs]="tabs"
+    [(activeTab)]="activeTab"
     [section]="section"
     [lastUpdatedAt]="lastUpdatedAt">
 </app-section-header>
@@ -16,6 +17,8 @@
         <th style="width: 150px;">View</th>
         <th style="width: 200px;">Updated at</th>
         <th style="width: 242px;">Options</th>
+        <th style="width: 150px;">Status</th>
+        <th style="width: 150px;">Draft</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-tableConfig>
@@ -46,6 +49,12 @@
             </a>
           </span>
         </td>
+        <td>
+          Published
+        </td>
+        <td>
+          Draft
+        </td>
       </tr>
     </ng-template>
   </p-table>
@@ -53,8 +62,15 @@
 <br>
 <div style="position: sticky; left: 0px;">
 
-  <div fxLayout="row" fxLayoutAlign="space-between start">
-    <p-button type="button" label="Create content" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+  <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+    <p-button
+        type="button"
+        label="Create content"
+        icon="pi pi-plus"
+        styleClass="p-button-text"
+        (onClick)="handleCreateContentClick()">
+    </p-button>
+
     <p-paginator
         #content_edit_paginator
         [rows]="10"
@@ -66,3 +82,9 @@
   </div>
 
 </div>
+
+<app-content-edit-dialog
+    [visible]="createContentDialogVisible || editContentDialogVisible"
+    [header]="dialogHeader"
+    (dialogClose)="handleDialogClose()">
+</app-content-edit-dialog>

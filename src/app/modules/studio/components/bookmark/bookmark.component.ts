@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookmarkComponent implements OnInit {
 
-  items = [
+  tabs = [
     {label: 'Novel', icon: ''},
     // {label: 'Audible', icon: ''}
   ]
+  activeTab = this.tabs[0];
 
   section = 'Bookmark'
   lastUpdatedAt = "'Updated at Mar 20 '21 at 10:12: PM'";
