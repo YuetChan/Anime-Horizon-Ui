@@ -4,5 +4,7 @@
 
 body{
   margin: 0px;
-  background-color: #3D0F3D;
+  background-color: rgb(20,24,30);
+
+  overflow-y: hidden;
 }

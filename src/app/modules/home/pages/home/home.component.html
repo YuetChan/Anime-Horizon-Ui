@@ -1,0 +1,54 @@
+<div class="main-panel">
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <div class="left-panel">
+      <div class="search-container">
+        <app-search (filterByClick)="handleFilterByClick($event)"  (searchResultChanged)="handleSearchChange($event)"></app-search>
+      </div>
+      <div [class]="filterByClick ? 'threads-panel':'threads-panel-o-filter-by'">
+        <div class="threads-container">
+          <div class="thread-container" *ngFor="let threadConfig of threadsConfig">
+            <app-thread
+                [threadConfig]="threadConfig"
+                (lnhUserClick)="handleLnhUserClick($event)"
+                (seriesClick)="handleSeriesClick($event)">
+            </app-thread>
+          </div>
+        </div>
+        <div class="threads-paginator-container">
+          <p-paginator
+              #threadsPaginator
+              [rows]="threadsPaginatorConfig.pageSize"
+              [totalRecords]="threadsPaginatorConfig.totalElements"
+              (onPageChange)="handleThreadsPaginatorChange($event)"
+              [showJumpToPageDropdown]="true"
+              [showPageLinks]="false">
+          </p-paginator>
+        </div>
+      </div>
+    </div>
+    <div class="right-panel">
+      <app-content></app-content>
+      <div class="contents-paginator-container">
+        <p-paginator
+            #contents_paginator
+            [rows]="contentsPaginatorConfig.pageSize"
+            [totalRecords]="contentsPaginatorConfig.totalElements"
+            (onPageChange)="handleContentsPaginatorChange($event)"
+            [showJumpToPageDropdown]="true"
+            [showPageLinks]="false">
+        </p-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="search-filter-sidebar-container">
+  <p-sidebar
+      [(visible)]="filterByClick"
+      [baseZIndex]="10000"
+      [style]="{'padding' : '10px', 'overflow-y' :'scroll'}"
+      >
+    <app-search-filter (searchFilterResultChanged)="handleSearchChange($event)"></app-search-filter>
+  </p-sidebar>
+</div>
+

@@ -1,0 +1,79 @@
+.main-panel{
+  background-color: #ffffff;
+
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.left-panel{
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ffffff;
+
+  min-width: 400px;
+  max-width: 400px;
+}
+
+.right-panel{
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ffffff;
+
+  height: 100vh;
+  width: 100%;
+}
+
+.threads-panel-o-filter-by{
+  height: calc(100vh - 49px);
+  overflow-y: scroll;
+}
+
+.threads-panel{
+  height: calc(100vh - 560px);
+  overflow-y: scroll;
+}
+
+.search-container{
+  margin-top: 0px;
+}
+
+.threads-container{
+  background-color: #ffffff;
+
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.thread-container{
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 4px;
+}
+
+.thread-container:last-child{ border-bottom: 0px solid rgba(196, 196, 196, 0.7); }
+
+
+.sort-by-div{
+  text-align: right;
+
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+
+  border-bottom: 1px solid #CED4DA;
+}
+
+.contents-paginator-container {
+  border-top: 1px solid rgba(196, 196, 196, 0.8);
+  background-color: #ffffff;
+}
+
+.threads-paginator-container {
+  border-top: 1px solid rgba(196, 196, 196, 0.8);
+  background-color: #ffffff;
+}
+
+.search-filter-sidebar-container{
+  font-family: 'Open Sans', sans-serif;
+}

@@ -1,0 +1,144 @@
+<p-dialog
+    [(visible)]="visible"
+    (visibleChange)="handleVisibleChange()"
+    [style]="{width: '80vw'}"
+    position="top">
+  <ng-template pTemplate="header">
+    <b>{{header}}</b>
+  </ng-template>
+  <app-eb-tab-menu [items]="tabs"></app-eb-tab-menu>
+    <br>
+
+    <div class="loader" [fxHide]="!loading">
+      Loading ...
+    </div>
+
+    <div
+        class="info-container" [fxHide]="!showInfo || loading"
+        fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div class="inline-h">Type:</div>
+        <div>&nbsp;&nbsp;Article</div>
+      </div>
+
+      <div>
+        <div class="inline-h">Title:</div>
+        <input class="inline-input" type="text" placeholder="Enter a title" pInputText />
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <div class="inline-h">Description:</div>
+        <textarea
+            [rows]="5" [cols]="50"
+            class="inline-input"
+            placeholder="Enter a description"
+            pInputTextarea>
+        </textarea>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <div class="inline-h">Opinions:</div>
+        <ul
+            class="checkbox-list"
+            fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
+          <li *ngFor="let opinion of editConfig.opinions">
+            <p-checkbox
+                [value]="opinion.code"
+                [label]="opinion.name"
+                [(ngModel)]="editResult.opinions">
+            </p-checkbox>
+          </li>
+        </ul>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <div class="inline-h">Analysis:</div>
+        <ul
+            class="checkbox-list"
+            fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
+          <li *ngFor="let analysis of editConfig.analysis">
+            <p-checkbox
+                [value]="analysis.code"
+                [label]="analysis.name"
+                [(ngModel)]="editResult.analysis">
+            </p-checkbox>
+          </li>
+        </ul>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <div class="inline-h">Markets:</div>
+
+        <ul
+            class="checkbox-list"
+            fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
+          <li *ngFor="let market of editConfig.markets">
+            <p-checkbox
+                [value]="market.code"
+                [label]="market.name"
+                [(ngModel)]="editResult.markets">
+            </p-checkbox>
+          </li>
+        </ul>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <div class="inline-h">Sectors:</div>
+        <ul
+            class="checkbox-list"
+            fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="5px">
+          <li *ngFor="let sector of editConfig.sectors">
+            <p-checkbox
+                [value]="sector.code"
+                [label]="sector.name"
+                [(ngModel)]="editResult.sectors">
+            </p-checkbox>
+          </li>
+        </ul>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <div class="inline-h">Tickers:</div>
+        <p-chips [(ngModel)]="editResult.tickers"></p-chips>
+      </div>
+
+    </div>
+
+    <div class="content-container" [fxHide]="!showContent || loading">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <button
+              pButton pRipple
+              type="button" label="Insert"
+              class="p-button-outlined p-button-info"
+              (click)="handleInsertClick()">
+          </button>
+          <button
+              pButton pRipple
+              type="button" label="Delete"
+              class="p-button-outlined p-button-danger"
+              (click)="handleDeleteClick()">
+          </button>
+          <div>
+            <small>Charactor count: {{editor ? editor.getLength() - 1 : 0}} / 6000</small>
+          </div>
+        </div>
+        <p-paginator
+            #content_editor_paginator
+            (onPageChange)="handlePageChange($event)"
+            [rows]="1"
+            [totalRecords]="drafts.length"
+            [showJumpToPageDropdown]="true"
+            [showPageLinks]="false">
+        </p-paginator>
+      </div>
+
+      <div id="content_editor" style="height: 500px;" (keydown)="handleKeydown($event)"></div>
+    </div>
+
+  <p-footer>
+    <button pButton type="button" label="Save Draft" ></button>
+    <button pButton type="button" label="Publish" ></button>
+  </p-footer>
+
+</p-dialog>

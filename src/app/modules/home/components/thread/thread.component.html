@@ -1,0 +1,50 @@
+<div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="6px">
+
+  <div fxLayout="column" fxLayoutGap="4px">
+    <div class="update-time-ago">
+      <span>/{{threadConfig.type}}&nbsp;&nbsp;</span><i>Updated at {{threadConfig.editedAt | piTimeAgo }}</i>
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="7px">
+      <a href="javascript:void(0);" class="thread-title"><b>{{threadConfig.title}}</b></a>
+      <p class="thread-description">{{threadConfig.description | randomTextTruncate : 100 : 25}}</p>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+
+      <div style="width: 32px; height: 32px">
+        <p-avatar
+            image="http://tinygraphs.com/squares/tinygraphs?theme=frogideas&numcolors=4&size=220&fmt=svg"
+            shape="circle">
+        </p-avatar>
+      </div>
+
+      <div class="thread-meta">
+        <div class="thread-series">
+          <a  href="javascript:void(0);"
+             (click)="handleSeriesClick(threadConfig.series)">
+            Series&nbsp;&nbsp;<span>{{threadConfig.series}}</span>
+          </a>
+        </div>
+        <div class="thread-creator">
+          <a  href="javascript:void(0);"
+              (click)="handleLnhUserClick(threadConfig.lnhUser.useremail)">
+            Author&nbsp;&nbsp;<span>{{threadConfig.lnhUser.username}}</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="thread-meta-icon" fxLayout="column" fxLayoutGap="10px">
+    <i class="pi pi-bookmark"></i>
+    <i class="pi pi-ellipsis-v"></i>
+    <!-- <i class="pi pi-eye"></i> -->
+  </div>
+
+
+</div>
+
+

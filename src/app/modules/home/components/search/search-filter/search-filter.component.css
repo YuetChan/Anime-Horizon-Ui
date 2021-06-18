@@ -1,0 +1,17 @@
+ul {
+  padding: 0;
+  margin: 5px;
+}
+
+li {
+  list-style: none;
+  color: #303030;
+  font-size: 15px;
+
+  padding: 0px;
+  margin: 5px 0;
+}
+
+b{ color:#303030; }
+
+.genres-list li { width: 120px; }

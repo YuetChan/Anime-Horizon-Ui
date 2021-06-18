@@ -1,0 +1,11 @@
+.update-time-ago i{
+  margin-top: 7px;
+
+  font-size: 10px;
+  color: rgb(48, 48, 48, 0.8);
+}
+
+.update-time-ago span{
+  font-size: 12px;
+  color: rgb(0,0,0);
+}

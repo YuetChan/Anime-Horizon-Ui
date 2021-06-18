@@ -1,0 +1,22 @@
+:host ::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link{
+  border-bottom: 2px solid rgb(0,123,255);
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #ffffff ;
+
+  font-family: 'Open Sans', sans-serif;
+  color: rgb(0,123,255);
+
+  outline: none;
+}
+
+:host ::ng-deep .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  border: 0px solid #ffffff;
+  outline: none;
+}
+
+:host ::ng-deep  .p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link:not(.p-disabled):focus{
+  box-shadow: none;
+}

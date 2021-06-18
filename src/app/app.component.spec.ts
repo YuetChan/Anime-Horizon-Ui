@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Anime-Horizon-Ui'`, () => {
+  it(`should have as title 'Light-Novel-Horizon-Ui'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Anime-Horizon-Ui');
+    expect(app.title).toEqual('Light-Novel-Horizon-Ui');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('Anime-Horizon-Ui app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('Light-Novel-Horizon-Ui app is running!');
   });
 });

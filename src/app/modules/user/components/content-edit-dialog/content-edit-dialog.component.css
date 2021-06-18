@@ -1,0 +1,49 @@
+:host ::ng-deep .p-dialog{ font-family: 'Open Sans', sans-serif; }
+
+h4{ margin: 0px; }
+
+input{ font-style: 14px; }
+
+ul {
+  padding: 0;
+  margin: 5px;
+}
+
+li {
+  list-style: none;
+  font-size: 15px;
+
+  padding: 0px;
+  margin: 5px 0;
+}
+
+.p-button-outlined{ font-size: 14px; }
+
+.checkbox-list li{
+  position: relative;
+  left: 10px;
+  top: -6px;
+  width: 200px;
+}
+.inline-h{
+  display: inline-block;
+  font-weight: bold;
+  font-size: 14px;
+
+  min-width: 100px;
+}
+
+.info-container{ padding-left: 12px; }
+.content-container {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#content_editor{
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+
+
+
