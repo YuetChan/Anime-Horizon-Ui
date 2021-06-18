@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { StudioComponent } from './pages/studio/studio.component';
+import { UserComponent } from './pages/user/user.component';
 
 
 @NgModule({
@@ -8,8 +8,8 @@ import { StudioComponent } from './pages/studio/studio.component';
   imports: [RouterModule.forChild([
     {
       path: '',
-      component: StudioComponent
+      component: UserComponent
     }
   ])]
 })
-export class StudioRoutingModule { }
+export class UserRoutingModule { }

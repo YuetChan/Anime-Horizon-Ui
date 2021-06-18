@@ -75,15 +75,13 @@ export class HomeComponent implements OnInit {
       threadsFetchFilterConfig = {
         series: this.searchApiService.findFirstItem(params['series']),
         type: this.searchApiService.findValidTypes(params['type'] ? (Array.isArray(params['type']) ? params['type'] : []) : []),
-        genres: this.searchApiService.findValidGenres(params['genres'] ? (Array.isArray(params['genres']) ? params['genres'] : []) : []),
+        // genres: this.searchApiService.findValidGenres(params['genres'] ? (Array.isArray(params['genres']) ? params['genres'] : []) : []),
 
         lnhUser: this.searchApiService.findFirstItem(params['lnhUser']),
         allowAudible: this.searchApiService.findFirstValidNullableBoolean(params['allowAudible']),
 
         pageable: pageable
       }
-
-      console.log(threadsFetchFilterConfig);
 
       this.threadsFetechMachine.reset();
       this.threadsFetechMachine.context = {

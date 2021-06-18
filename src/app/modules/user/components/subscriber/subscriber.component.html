@@ -1,0 +1,50 @@
+<div class="subscriber-table">
+  <p-table
+      [value]="tableConfigs"
+      [paginator]="false"
+      [rows]="10"
+      [showCurrentPageReport]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 242px;">Useremail</th>
+        <th style="width: 150px;">Username</th>
+        <th style="width: 200px;">Joined at</th>
+        <th style="width: 242px;">Options</th>
+        <th style="width: 150px;">Status</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-tableConfig>
+      <tr>
+        <td style="width: 242px;">{{tableConfig.useremail}}</td>
+        <td style="width: 150px;">{{tableConfig.username}}</td>
+        <td style="width: 200px;">{{tableConfig.joinedAt}}</td>
+        <td style="width: 242px;">
+          <span>
+            <a>
+              <i class="pi pi-directions" style="font-size: 12px;"></i>
+              View
+            </a>
+          </span>
+        </td>
+        <td>
+          Not expired
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<br>
+<div style="position: sticky; left: 0px;">
+  <div fxLayout="row wrap" fxLayoutAlign="end start">
+    <p-paginator
+        #subscriber_paginator
+        [rows]="10"
+        [totalRecords]="tableConfigs.length"
+        (onPageChange)="handleSubscriberPaginatorChange($event)"
+        [showJumpToPageDropdown]="true"
+        [showPageLinks]="false">
+    </p-paginator>
+  </div>
+</div>
+
+

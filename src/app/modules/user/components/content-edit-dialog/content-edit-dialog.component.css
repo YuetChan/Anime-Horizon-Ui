@@ -1,4 +1,4 @@
-:host ::ng-deep .p-dialog{ font-family: 'Open Sans', sans-serif;; }
+:host ::ng-deep .p-dialog{ font-family: 'Open Sans', sans-serif; }
 
 h4{ margin: 0px; }
 
@@ -19,16 +19,18 @@ li {
 
 .p-button-outlined{ font-size: 14px; }
 
-.genres-list li{
+.checkbox-list li{
   position: relative;
   left: 10px;
   top: -6px;
-  width: 120px;
+  width: 200px;
 }
 .inline-h{
   display: inline-block;
   font-weight: bold;
   font-size: 14px;
+
+  min-width: 100px;
 }
 
 .info-container{ padding-left: 12px; }
@@ -37,6 +39,9 @@ li {
   padding-right: 2px;
 }
 
+#content_editor{
+  font-family: 'Open Sans', sans-serif;
+}
 
 
 

@@ -10,32 +10,36 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CheckboxModule } from 'primeng/checkbox';
-import { EditorModule } from 'primeng/editor';
+import { ChipsModule } from 'primeng/chips';
 
-import { StudioComponent } from './pages/studio/studio.component';
+import { UserComponent } from './pages/user/user.component';
 import { ContentEditComponent } from './components/content-edit/content-edit.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
 import { BookmarkComponent } from './components/bookmark/bookmark.component'
+import { StudioComponent } from './components/studio/studio.component'
 
-import { StudioRoutingModule } from './studio-routing.module';
+import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ContentEditDialogComponent } from './components/content-edit-dialog/content-edit-dialog.component';
+import { SubscriberComponent } from './components/subscriber/subscriber.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 @NgModule({
   declarations: [
-    StudioComponent,
-    MenuComponent,
+    UserComponent,
     ContentEditComponent,
     SectionHeaderComponent,
     BookmarkComponent,
-    ContentEditDialogComponent
+    ContentEditDialogComponent,
+    SubscriberComponent,
+    StudioComponent,
+    UserInfoComponent
   ],
   imports: [
     CommonModule,
     MenuModule,
     SharedModule,
-    StudioRoutingModule,
+    UserRoutingModule,
     FlexLayoutModule,
     AvatarModule,
     ButtonModule,
@@ -45,7 +49,7 @@ import { ContentEditDialogComponent } from './components/content-edit-dialog/con
     InputTextModule,
     InputTextareaModule,
     CheckboxModule,
-    EditorModule
+    ChipsModule
   ]
 })
-export class StudioModule { }
+export class UserModule { }

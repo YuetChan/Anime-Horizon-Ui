@@ -1,9 +1,5 @@
-<app-section-header
-    [tabs]="tabs"
-    [(activeTab)]="activeTab"
-    [section]="section"
-    [lastUpdatedAt]="lastUpdatedAt">
-</app-section-header>
+<app-section-header [tabs]="tabs"></app-section-header>
+
 <div class="bookmark-table">
   <p-table
       [value]="tableConfigs"
@@ -13,16 +9,18 @@
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 242px;">Title</th>
-        <th style="width: 242px;">Series</th>
         <th style="width: 150px;">View</th>
+        <th style="width: 200px;">Updated at</th>
         <th style="width: 242px;">Options</th>
+        <!-- placeholder to make the fixed width work  -->
+        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-tableConfig>
       <tr>
         <td style="width: 242px;">{{tableConfig.title}}</td>
-        <td style="width: 242px;">{{tableConfig.series}}</td>
         <td style="width: 150px;">{{tableConfig.view}}</td>
+        <td style="width: 200px;">{{tableConfig.updatedAt}}</td>
         <td style="width: 242px;">
           <span>
             <a>
@@ -38,19 +36,22 @@
             </a>
           </span>
         </td>
+        <td></td>
       </tr>
     </ng-template>
   </p-table>
 </div>
 <br>
 <div style="position: sticky; left: 0px;">
-  <p-paginator
-      #bookmark_paginator
-      [rows]="10"
-      [totalRecords]="tableConfigs.length"
-      (onPageChange)="handleContentsPaginatorChange($event)"
-      [showJumpToPageDropdown]="true"
-      [showPageLinks]="false">
-  </p-paginator>
+  <div fxLayout="row wrap" fxLayoutAlign="end start">
+    <p-paginator
+        #subscriber_paginator
+        [rows]="10"
+        [totalRecords]="tableConfigs.length"
+        (onPageChange)="handleBookmarkPaginatorChange($event)"
+        [showJumpToPageDropdown]="true"
+        [showPageLinks]="false">
+    </p-paginator>
+  </div>
 </div>
 

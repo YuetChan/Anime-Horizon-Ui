@@ -8,17 +8,19 @@ import { SearchApiService } from 'src/app/shared/services/search-api.service';
 })
 export class SearchFilterComponent implements OnInit {
 
-  @Output() searchFilterResultChanged : EventEmitter<{type: string[], genres: string[], sortedBy : string }> = new EventEmitter();
+  @Output() searchFilterResultChanged : EventEmitter<{type: string[],
+    // genres: string[],
+    sortedBy : string }> = new EventEmitter();
 
   searchFilterResult = {
     type: [],
     sortedBy : null,
-    genres : []
+    // genres : []
   }
   searchFilterConfig = {
     types: [],
     sortedBys : [],
-    genres : []
+    // genres : []
   }
 
   constructor(private route: ActivatedRoute,
@@ -40,7 +42,7 @@ export class SearchFilterComponent implements OnInit {
         ...(params['genres'] ? (Array.isArray(params['genres']) ? params['genres'] : [params['genres']]) : [])];
 
       let genresWithoutDuplicates = genresWithDuplicates.filter((n, i) => genresWithDuplicates.indexOf(n) === i);
-      this.searchFilterResult.genres = this.searchApiService.findValidGenres(genresWithoutDuplicates);
+      // this.searchFilterResult.genres = this.searchApiService.findValidGenres(genresWithoutDuplicates);
 
 
       let sortedByWithDuplicates = [
@@ -61,13 +63,13 @@ export class SearchFilterComponent implements OnInit {
     this.searchFilterConfig = {
       types: this.searchApiService.getValidTypes(),
       sortedBys : this.searchApiService.getValidSortedBys(),
-      genres : this.searchApiService.getValidGenres()
+      // genres : this.searchApiService.getValidGenres()
     }
 
     this.searchFilterResult = {
       type: [],
       sortedBy : this.searchFilterConfig.sortedBys[0].code,
-      genres : []
+      // genres : []
     }
   }
 

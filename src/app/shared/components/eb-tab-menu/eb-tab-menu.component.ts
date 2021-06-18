@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-eb-tab-menu',
@@ -7,10 +7,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EbTabMenuComponent implements OnInit {
 
-  @Input() items: {label : string, icon : string}[] = [];
-  @Input() activeItem : {label : string, icon : string} = {label: '', icon: ''};
+  @Input() set items(items: {label: string, icon: string, isActive: boolean}[]){
+    this._items = items;
+    this.activeItem = items.filter(item => item.isActive)[0];
+  }
+  _items: {label: string, icon: string}[] = [];
+
+  activeItem: {label : string, icon : string} = {label: '', icon: ''};
+  @Output() onActiveItemChange: EventEmitter<{label: string, icon: string}> = new EventEmitter();
 
   constructor() { }
   ngOnInit(): void { }
+
 
 }

@@ -10,7 +10,7 @@
   border-right: 0px;
 }
 
-:host ::ng-deep .p-menu .p-menuitem-link.active{
+:host ::ng-deep .p-menuitem-link.active{
   border-left: 3px solid black;
   padding-left: 13px;
 }

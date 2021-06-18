@@ -1,0 +1,5 @@
+<app-section-header [tabs]="tabs" (headerChange)="handleSectionHeaderChange($event)"></app-section-header>
+
+<app-content-edit [fxHide]="activeTab.label!=='Content edit'"></app-content-edit>
+<app-subscriber [fxHide]="activeTab.label!=='Subscriber'"></app-subscriber>
+

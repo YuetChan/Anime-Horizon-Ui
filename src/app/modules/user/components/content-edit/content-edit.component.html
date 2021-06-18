@@ -1,9 +1,3 @@
-<app-section-header
-    [tabs]="tabs"
-    [(activeTab)]="activeTab"
-    [section]="section"
-    [lastUpdatedAt]="lastUpdatedAt">
-</app-section-header>
 <div class="content-edit-table">
   <p-table
       [value]="tableConfigs"
@@ -13,7 +7,6 @@
     <ng-template pTemplate="header">
       <tr>
         <th style="width: 242px;">Title</th>
-        <th style="width: 242px;">Series</th>
         <th style="width: 150px;">View</th>
         <th style="width: 200px;">Updated at</th>
         <th style="width: 242px;">Options</th>
@@ -24,7 +17,6 @@
     <ng-template pTemplate="body" let-tableConfig>
       <tr>
         <td style="width: 242px;">{{tableConfig.title}}</td>
-        <td style="width: 242px;">{{tableConfig.series}}</td>
         <td style="width: 150px;">{{tableConfig.view}}</td>
         <td style="width: 200px;">{{tableConfig.updatedAt}}</td>
         <td style="width: 242px;">
@@ -60,8 +52,8 @@
   </p-table>
 </div>
 <br>
-<div style="position: sticky; left: 0px;">
 
+<div style="position: sticky; left: 0px;">
   <div fxLayout="row wrap" fxLayoutAlign="space-between start">
     <p-button
         type="button"
@@ -70,7 +62,6 @@
         styleClass="p-button-text"
         (onClick)="handleCreateContentClick()">
     </p-button>
-
     <p-paginator
         #content_edit_paginator
         [rows]="10"
@@ -80,7 +71,6 @@
         [showPageLinks]="false">
     </p-paginator>
   </div>
-
 </div>
 
 <app-content-edit-dialog

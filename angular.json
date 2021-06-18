@@ -27,7 +27,9 @@
               "./node_modules/primeicons/primeicons.css",
               "src/styles.css"
             ],
-            "scripts": ["../node_modules/quill/dist/quill.js"]
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {

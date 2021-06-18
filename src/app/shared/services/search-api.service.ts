@@ -6,96 +6,121 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SearchApiService {
 
-  genres = [{
-      name : 'Action',
-      code : 'ACTION',
-      inactive : false
-    },{
-      name : 'Adventure',
-      code : 'ADVENTURE',
-      inactive : false
-    },{
-      name : 'Comedy',
-      code : 'COMEDY',
-      inactive : false
-    },{
-      name : 'Cyberpunk',
-      code : 'CYBERPUNK',
-      inactive : false
-    },{
-      name : 'Drama',
-      code : 'DRAMA',
-      inactive : false
-
-    },{
-      name : 'Ecchi',
-      code : 'ECCHI',
-      inactive : false
-    },{
-      name : 'Fantasy',
-      code : 'FANTASY',
-      inactive : false
-    },{
-      name : 'Harem',
-      code : 'HAREM',
-      inactive : false
-    },{
-      name : 'Historical',
-      code : 'HISTORICAL',
-      inactive : false
-    },{
-      name : 'Horror',
-      code : 'HORROR',
-      inactive : false
-    },{
-      name : 'Isekai',
-      code : 'ISEKAI',
-      inactive : false
-    },{
-      name : 'Mystery',
-      code : 'MYSTERY',
-      inactive : false
-    },{
-      name : 'Psychological',
-      code : 'PSYCHOLOGICAL',
-      inactive : false
-    }, {
-      name : 'Romance ',
-      code : 'ROMANCE',
-      inactive : false
-    },{
-      name : 'School Life',
-      code : 'SCHOOL_LIFE',
-      inactive : false
-    },{
-      name : 'Sci Fi',
-      code : 'SCI_FI',
-      inactive : false
-    },{
-      name : 'Sport',
-      code : 'SPORT',
-      inactive : false
-    }
-  ]
   type = [{
-    name : 'Novel',
-    code : 'NOVEL',
+    name : 'Article',
+    code : 'ARTICLE',
     inactive : false,
     default : true,
     class : 'pi pi-pencil'
-  },{
-    name : 'Audible',
-    code : 'AUDIBLE',
+  }];
+
+  markets = [{
+    name : 'Commodities',
+    code : 'COMMODITIES',
     inactive : false,
-    default : false,
-    class : 'pi pi-volume-up'
+    default : true,
   },{
-    name : 'Discuss',
-    code : 'DISCUSS',
+    name : 'Stocks',
+    code : 'STOCKS',
     inactive : false,
-    default : false
-  },
-  ];
+    default : true,
+  },{
+    name : 'Cryptocurrencies',
+    code : 'CRYPTOS',
+    inactive : false,
+    default : true,
+  }]
+
+  sectors = [{
+    name : 'Consumer Discretionary',
+    code : 'CONSUMER_DISCRETIONARY',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Consumer Staples',
+    code : 'CONSUMER_STAPLES',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Energy',
+    code : 'ENERGY',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Financials',
+    code : 'FINANCIALS',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Health Care',
+    code : 'HEALTH_CARE',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Industrials',
+    code : 'INDUSTRIALS',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Information Technology',
+    code : 'INFORMATION_TECHNOLOGY',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Materials',
+    code : 'MATERIAL',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Real Estate',
+    code : 'REAL_ESTATE',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Telecommunication Services',
+    code : 'TELE_SERVICES',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Utilities',
+    code : 'UTILITIES',
+    inactive : false,
+    default : true,
+  }]
+
+  analysis = [{
+    name : 'Technical Analysis',
+    code : 'TA',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Fundamental Analysis',
+    code : 'FA',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Macro Analysis',
+    code : 'MA',
+    inactive : false,
+    default : true,
+  }]
+
+  opinions = [{
+    name : 'Bull',
+    code : 'BULL',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Bear',
+    code : 'BEAR',
+    inactive : false,
+    default : true,
+  },{
+    name : 'Neutral',
+    code : 'NEUTRAL',
+    inactive : false,
+    default : true,
+  }]
 
   sortedBys = [
     {
@@ -122,7 +147,10 @@ export class SearchApiService {
 
 
   getValidTypes() {return this.type; }
-  getValidGenres(){ return this.genres; }
+  getValidSectors(){ return this.sectors; }
+  getValidMarkets(){ return this.markets; }
+  getValidAnalysis(){ return this.analysis; }
+  getValidOpinions(){ return this.opinions; }
 
   getValidSortedBys(){ return this.sortedBys; }
 
@@ -171,21 +199,19 @@ export class SearchApiService {
           validTypes.push(type);
     }
 
-
-    console.log(validTypes);
     return validTypes.length ? validTypes : null;
   }
 
-  findValidGenres(items){
-    let validGenres = [];
-    for(let item of items){
-      for(let genre of this.getValidGenres().filter(genre => !genre.inactive).map(genre => genre.code))
-        if(item === genre)
-          validGenres.push(genre);
-    }
+  // findValidGenres(items){
+  //   let validGenres = [];
+  //   for(let item of items){
+  //     for(let genre of this.getValidGenres().filter(genre => !genre.inactive).map(genre => genre.code))
+  //       if(item === genre)
+  //         validGenres.push(genre);
+  //   }
 
-    return validGenres.length ? validGenres : null;
-  }
+  //   return validGenres.length ? validGenres : null;
+  // }
 
   findFirstValidSortedBy(sortedBys){
     if(sortedBys) {
