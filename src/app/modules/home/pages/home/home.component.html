@@ -1,29 +1,29 @@
 <div class="main-panel">
-  <app-banner class="banner-app"></app-banner>
   <div fxLayout="row" fxLayoutAlign="start start">
     <div class="left-panel">
       <div class="search-container">
-        <app-search (searchResultChanged)="handleSearchChange($event)"></app-search>
+        <app-search (filterByClick)="handleFilterByClick($event)"  (searchResultChanged)="handleSearchChange($event)"></app-search>
       </div>
-      <div class="threads-container">
-        <div class="thread-container" *ngFor="let threadConfig of threadsConfig">
-          <app-thread
-              [threadConfig]="threadConfig"
-              (lnhUserClick)="handleLnhUserClick($event)"
-              (seriesClick)="handleSeriesClick($event)">
-          </app-thread>
+      <div [class]="filterByClick ? 'threads-panel':'threads-panel-o-filter-by'">
+        <div class="threads-container">
+          <div class="thread-container" *ngFor="let threadConfig of threadsConfig">
+            <app-thread
+                [threadConfig]="threadConfig"
+                (lnhUserClick)="handleLnhUserClick($event)"
+                (seriesClick)="handleSeriesClick($event)">
+            </app-thread>
+          </div>
         </div>
-      </div>
-      <div class="threads-paginator-container">
-        <p-paginator
-            #threadsPaginator
-            [rows]="threadsPaginatorConfig.pageSize"
-            [totalRecords]="threadsPaginatorConfig.totalElements"
-            (onPageChange)="handleThreadsPaginatorChange($event)"
-            [showJumpToPageDropdown]="true"
-            [showPageLinks]="false">
-        </p-paginator>
-        <br>
+        <div class="threads-paginator-container">
+          <p-paginator
+              #threadsPaginator
+              [rows]="threadsPaginatorConfig.pageSize"
+              [totalRecords]="threadsPaginatorConfig.totalElements"
+              (onPageChange)="handleThreadsPaginatorChange($event)"
+              [showJumpToPageDropdown]="true"
+              [showPageLinks]="false">
+          </p-paginator>
+        </div>
       </div>
     </div>
     <div class="right-panel">
@@ -37,30 +37,18 @@
             [showJumpToPageDropdown]="true"
             [showPageLinks]="false">
         </p-paginator>
-        <br>
-      </div>
-    </div>
-
-    <div class="res left-panel">
-      <div class="search-container">
-        <app-search></app-search>
-      </div>
-      <div class="threads-container">
-        <div class="thread-container" *ngFor="let threadConfig of threadsConfig">
-          <app-thread [threadConfig]="threadConfig"></app-thread>
-        </div>
-        <div>
-          <p-paginator
-              [rows]="threadsPaginatorConfig.pageSize"
-              [totalRecords]="threadsPaginatorConfig.totalElements"
-              (onPageChange)="handleThreadsPaginatorChange($event)"
-              [showJumpToPageDropdown]="true"
-              [showPageLinks]="false">
-          </p-paginator>
-          <br>
-        </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="search-filter-sidebar-container">
+  <p-sidebar
+      [(visible)]="filterByClick"
+      [baseZIndex]="10000"
+      [style]="{'padding' : '10px', 'overflow-y' :'scroll'}"
+      >
+    <app-search-filter (searchFilterResultChanged)="handleSearchChange($event)"></app-search-filter>
+  </p-sidebar>
 </div>
 

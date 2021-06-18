@@ -2,11 +2,9 @@
 @import "primeng/resources/primeng.min.css";
 @import "primeng/resources/themes/bootstrap4-light-blue/theme.css";
 
-@import '~quill/dist/quill.core.css';
-@import '~quill/dist/quill.bubble.css';
-@import '~quill/dist/quill.snow.css';
-
 body{
   margin: 0px;
-  background-color: #e4e0e0;
+  background-color: rgb(20,24,30);
+
+  overflow-y: hidden;
 }

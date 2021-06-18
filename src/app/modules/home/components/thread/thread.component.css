@@ -1,37 +1,64 @@
-.thread-title-div{ padding-right: 20px; }
-
-.thread-description-p{
-  margin: 0px;
-  font-size: 14px;
-}
-
-.thread-creator-a{
-  color: rgb(48, 48, 48);
-  font-size: 14px;
-}
-
-.thread-series-a{
-  color: rgb(48, 48, 48);
-  font-size: 14px;
-}
-
-.thread-creator-p{
-  text-align: right;
-  margin-top: 0px;
-  margin-bottom: 8px;
-}
-
-.update-time-ago-span{ font-size: 12px; }
-
-h3{
-  color: rgb(48, 48, 48);
-  margin: 0px
-}
-
-p{
-  color: rgb(31,31,30);
-  margin-top: 5px;
-}
-
 a{ text-decoration: none; }
+
+p.thread-description{
+  margin: 0px;
+
+  font-size: 14px;
+  color: rgb(48, 48, 48, 0.8);
+  line-height: 20px;
+}
+
+.thread-creator a{
+  color: rgb(48, 48, 48,0.8);
+  /* font-size: 14px; */
+}
+
+.thread-creator span{
+  color: rgb(0,140,226);
+  /* font-size: 14px; */
+}
+
+.thread-series a{
+  color: rgb(48, 48, 48, 0.8);
+  /* font-size: 14px; */
+}
+
+.thread-series span{
+  color: rgb(0,140,226);
+  /* font-size: 14px; */
+}
+
+.thread-creator{
+  text-align: left;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.update-time-ago i{
+  margin-top: 7px;
+
+  font-size: 10px;
+  color: rgb(48, 48, 48, 0.8);
+}
+.update-time-ago span{
+  font-size: 12px;
+  color: rgb(0,0,0);
+}
+
+a.thread-title{
+  font-size: 16px;
+  color: rgb(48, 48, 48);
+  text-decoration: none;
+
+  margin: 0px;
+}
+
+.thread-meta-icon{
+  color: rgb(48, 48, 48, 0.8);
+  padding-top: 6px;
+}
+
+.thread-meta{
+  font-size: 12px;
+}
 

@@ -1,0 +1,9 @@
+<div style="position: sticky; left: 0px;">
+  <app-eb-reddit-section-meta [section]="activeTab.label" [lastUpdatedAt]="activeTab.lastUpdatedAt"></app-eb-reddit-section-meta>
+  <h2 style="margin: 0px;">
+    {{activeTab.label}}
+  </h2>
+  <br>
+  <app-eb-tab-menu [items]="_tabs"></app-eb-tab-menu>
+  <br>
+</div>

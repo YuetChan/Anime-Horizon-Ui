@@ -4,6 +4,7 @@ import { Paginator } from 'primeng/paginator';
 import { switchMap } from 'rxjs/operators';
 import { SearchApiService, SearchSourceEnums } from 'src/app/shared/services/search-api.service';
 import { ThreadApiService } from 'src/app/shared/services/thread-api.service';
+import { StringHelperService } from 'src/app/shared/services/string-helper.service';
 import { LoadingStateMachine } from 'src/app/shared/states-machine/loading-state-machine';
 
 @Component({
@@ -17,7 +18,9 @@ export class HomeComponent implements OnInit {
   @ViewChild('contents_paginator', { static : true }) contentsPaginatorRef: Paginator;
 
 
-  DEFAULT_PAGE_SIZE = 1;
+  DEFAULT_PAGE_SIZE = 10;
+
+  filterByClick = false;
 
   threadsFetechMachine = new LoadingStateMachine();
   threadsConfig : {}[] = [];
@@ -51,10 +54,11 @@ export class HomeComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private threadApiService : ThreadApiService,
-              private searchApiService : SearchApiService) { }
+              private searchApiService : SearchApiService,
+              private stringHelperService : StringHelperService) { }
   ngOnInit(): void {
     this.initThreadsConfig();
-    this.initSearchFootprint();
+    // this.initSearchFootprint();
   }
 
 
@@ -70,8 +74,8 @@ export class HomeComponent implements OnInit {
 
       threadsFetchFilterConfig = {
         series: this.searchApiService.findFirstItem(params['series']),
-        type: this.searchApiService.findFirstValidType(params['type']),
-        genres: this.searchApiService.findValidGenres(params['genres'] ? (Array.isArray(params['genres']) ? params['genres'] : []) : []),
+        type: this.searchApiService.findValidTypes(params['type'] ? (Array.isArray(params['type']) ? params['type'] : []) : []),
+        // genres: this.searchApiService.findValidGenres(params['genres'] ? (Array.isArray(params['genres']) ? params['genres'] : []) : []),
 
         lnhUser: this.searchApiService.findFirstItem(params['lnhUser']),
         allowAudible: this.searchApiService.findFirstValidNullableBoolean(params['allowAudible']),
@@ -79,12 +83,12 @@ export class HomeComponent implements OnInit {
         pageable: pageable
       }
 
-
       this.threadsFetechMachine.reset();
       this.threadsFetechMachine.context = {
         fetchInterface: this.threadApiService.fetchThreadsByFilter(threadsFetchFilterConfig),
         maxRefetchCount: 3
       }
+
       return this.threadsFetechMachine.fetch();
     }))
 
@@ -99,9 +103,11 @@ export class HomeComponent implements OnInit {
           series: thread.series.name,
 
           title: thread.title,
-          description: thread.contents.length ? thread.contents[0] : "",
-          type: thread.type.name,
-          genres: thread.series.categories.map((genre => genre.name)),
+          description: thread.description,
+          type: this.stringHelperService.capitalizeFirstLetter(thread.type.name.toLowerCase()),
+          genres: thread.series.genres.map((genre => genre.name)),
+
+          avgRating: thread.avgRating,
 
           uploadedAt: new Date(thread.uploadedAt),
           uploadedBy: thread.uploadedBy,
@@ -237,6 +243,10 @@ export class HomeComponent implements OnInit {
       },
       queryParamsHandling: 'merge'
     });
+  }
+
+  handleFilterByClick(event){
+    this.filterByClick = !this.filterByClick;
   }
 
 }

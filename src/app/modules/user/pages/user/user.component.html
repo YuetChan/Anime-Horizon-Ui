@@ -1,0 +1,22 @@
+<div >
+  <div class="main-panel" fxLayout="row" fxLayoutGap="20px">
+
+    <div class="left-panel">
+      <div class="banner-container">
+          <img src="https://i.ibb.co/xmjv9Fg/evening-brew-1.png" style="height: 33px; width: 100px;">
+      </div>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <app-user-info></app-user-info>
+        <app-eb-vertical-menu [items]="menuItems" (itemClick)="handleMenuItemClick($event)"></app-eb-vertical-menu>
+      </div>
+    </div>
+
+    <div class="right-panel" fxFlex>
+      <app-studio [fxHide]="activeMenuItem?.label !== 'Studio'"></app-studio>
+      <app-bookmark [fxHide]="activeMenuItem?.label !== 'Bookmarks'"></app-bookmark>
+    </div>
+  </div>
+
+</div>
+
+

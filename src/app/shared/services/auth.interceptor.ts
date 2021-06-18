@@ -14,8 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private userSessionService : UserSessionService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    // const userSession =
-    const authReq = request.clone({
+    request = request.clone({
       headers: request.headers.set(`Authorization`, `Bearer ${this.userSessionService.getUserSession()}`)
     });
 
